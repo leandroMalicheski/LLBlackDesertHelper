@@ -1,0 +1,39 @@
+<ion-header>
+    <ion-navbar color="navBar">
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Item Imperial</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content class="page-imperial-item">
+    <div><img class="card-img" [src]="imperialItem.icon"/></div>
+    
+    <h1>{{imperialItem.name}}</h1>
+    
+    <ion-list class="list-top-border">
+      <ion-item-divider color="light" class="ion-item-divider-app"><ion-icon name="information-circle" class="ion-icon-padding-rigth ion-icon-defaut-color"></ion-icon>Dados</ion-item-divider>
+      <ion-item><b>Level: </b>{{imperialItem.level}}</ion-item>
+      <ion-item><b>Valor: </b>{{imperialItem.maskedPrice}}</ion-item>
+      <ion-item class="card-div" [hidden]="hideResult"><b>Valor à Receber:</b> {{imperialItemForm.result}}</ion-item>
+      <ion-item-divider color="light" class="ion-item-divider-app"><ion-icon name="calculator" class="ion-icon-padding-rigth ion-icon-defaut-color"></ion-icon>Calcular</ion-item-divider>
+      <ion-item>
+          <ion-label floating>Quatidade de Itens</ion-label>
+          <ion-input type="number" [(ngModel)]="imperialItemForm.qty" name="qty" required></ion-input>
+      </ion-item>
+      <ion-item-divider color="light" class="ion-item-divider-app"><ion-icon name="list" class="ion-icon-padding-rigth ion-icon-defaut-color"></ion-icon>Item Necessário</ion-item-divider>
+      <ion-item (click)="mealTapped()">
+        <ion-avatar item-start>
+          <img [src]="craftMaterial.icon">
+        </ion-avatar>
+        <h2>{{craftMaterial.name}}</h2>
+        <p><b>Quantidade Necessária:</b> {{imperialItemForm.qtyToCraft}}</p>
+      </ion-item>
+    </ion-list>
+
+    <ion-fab top right edge>
+        <button ion-fab mini (click)="calculate()"><ion-icon name="arrow-dropright"></ion-icon></button>
+    </ion-fab>
+  </ion-content>
+  

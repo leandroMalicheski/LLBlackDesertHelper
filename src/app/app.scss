@@ -14,3 +14,97 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+.iniciante{
+    color: #ffffff;
+}
+.aprendiz{
+    color:#006600;
+}
+
+.proficiente{
+    color:#3366ff,
+}
+.profissional{
+    color:#cca32a,
+}
+.artesao{
+    color:#ff3300,
+}
+.mestre{
+    color:#ff00ff,
+}
+
+.ion-icon-padding-rigth {
+    padding-right: .5em;
+}
+
+.ion-icon-defaut-color{
+    color:#720505;
+}
+.second-list-margin{
+    margin-top: 0px;
+}
+.first-list-margin{
+    margin-bottom: 0px; 
+}
+.card-img {
+    width: 90px; 
+    height: 90px; 
+    margin: auto;
+    display: block;
+}
+
+.list-top-border{
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-color: #dedede;
+}
+
+.ion-item-divider-app {
+    font-size: 2rem;
+}
+
+h1{
+    font-size: 2rem;
+    text-align: center;
+    font-family: "Roboto", "Helvetica Neue", sans-serif;
+}
+
+p {
+    font-family: "Roboto", "Helvetica Neue", sans-serif;
+}
+
+/* unvisited link */
+a:link {
+    color: #222;
+    text-decoration: unset;
+}
+
+/* visited link */
+a:visited {
+    color: #222;
+    text-decoration: unset;
+}
+
+/* mouse over link */
+a:hover {
+    color: #720505;
+    font-style: normal;
+}
+
+/* selected link */
+a:active {
+    color: #222;
+    text-decoration: unset;
+}
+
+.toastSuccess > div:first-child{
+    background: #32db64;
+    text-align: center;
+}
+
+.toastFail > div:first-child{
+    background: #f53d3d;
+    text-align: center;
+}

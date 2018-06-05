@@ -1,0 +1,112 @@
+<!--
+  Generated template for the MealPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar color="navBar">
+    <ion-title>Prato</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content class="page-meal">
+  <div><img class="card-img" [src]="meal.icon"/></div>
+  <h1>{{meal.name}}</h1>
+  
+  <div [hidden]="hideIngredientsPage">
+    <ion-list class="first-list-margin">
+      <ion-item-divider color="light" class="ion-item-divider-app"><ion-icon name="information-circle" class="ion-icon-padding-rigth ion-icon-defaut-color"></ion-icon>Dados</ion-item-divider>
+      <ion-item><b>Level: </b>{{meal.level}}</ion-item>
+      <ion-item-divider color="light" class="ion-item-divider-app"><ion-icon name="calculator" class="ion-icon-padding-rigth ion-icon-defaut-color"></ion-icon>Calcular</ion-item-divider>
+      <ion-item>
+          <ion-label floating>Quatidade de Itens</ion-label>
+          <ion-input type="number" [(ngModel)]="mealForm.qty" name="qty" required></ion-input>
+      </ion-item>
+      <ion-item-divider color="light" class="ion-item-divider-app"><ion-icon name="restaurant" class="ion-icon-padding-rigth ion-icon-defaut-color"></ion-icon>Ingrediente(s)</ion-item-divider>
+      <ion-item *ngFor="let craftMaterial of ingredientList" (click)="ingredientTapped(craftMaterial)">
+        <ion-avatar item-start>
+          <img [src]="craftMaterial.icon">
+        </ion-avatar>
+        <h2>{{craftMaterial.name}}</h2>
+        <p><b>Quantidade Necessária:</b> {{craftMaterial.qtyTotal}}</p>
+      </ion-item>
+    </ion-list>
+    <ion-list *ngIf="meal.plusCrafted" class="second-list-margin">
+      <ion-item-divider color="light" class="ion-item-divider-app"><ion-icon name="list" class="ion-icon-padding-rigth ion-icon-defaut-color"></ion-icon>Resultado Adicional</ion-item-divider>
+      <ion-item *ngFor="let meal of meal.plusCrafted">
+        <h2>{{meal.name}}</h2>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <div [hidden]="hideTimePage">
+    <ion-list class="first-list-margin">
+      <ion-item-divider color="light" class="ion-item-divider-app"><ion-icon name="information-circle" class="ion-icon-padding-rigth ion-icon-defaut-color"></ion-icon>Dados</ion-item-divider>
+      <ion-item><b>Level: </b>{{meal.level}}</ion-item>
+      <ion-item *ngIf="totalTimeSpent" class="ion-item"><b>Tempo Gasto: </b>{{totalTimeSpent}}</ion-item>    
+      <ion-item-divider color="light" class="ion-item-divider-app"><ion-icon name="calculator" class="ion-icon-padding-rigth ion-icon-defaut-color"></ion-icon>Calcular</ion-item-divider>
+      <ion-item>
+          <ion-label floating>Quatidade de Itens</ion-label>
+          <ion-input type="number" [(ngModel)]="mealForm.qty" name="qty" required></ion-input>
+      </ion-item>
+      <ion-item color="lighter">
+        <ion-avatar item-start>
+          <img [src]="cookingClothes.icon">
+        </ion-avatar>
+        <b>Traje de Cozinheiro</b>
+      </ion-item>
+      <ion-item><b>Level: </b> +{{cookingClothes.level}}</ion-item>
+      <ion-item>
+        <ion-label><b>Utiliza o Traje ?</b></ion-label>
+        <ion-toggle color="navBar" (ionChange)="cookingClothes.isOn = !cookingClothes.isOn"></ion-toggle>
+      </ion-item>
+      <ion-item>
+        <ion-range min="0" max="5" step="1" snaps="true" color="navBar" [(ngModel)]="cookingClothes.level" [disabled]="!cookingClothes.isOn">
+          <ion-icon range-left small color="navBar" name="flame"></ion-icon>
+          <ion-icon range-right color="navBar" name="flame"></ion-icon>
+        </ion-range>
+      </ion-item>
+    </ion-list>
+    <ion-item color="lighter">
+      <ion-avatar item-start>
+        <img [src]="cookingUtensil.icon">
+      </ion-avatar>
+      <b>Utensílio Utilizado</b>
+    </ion-item>
+    <ion-item><b>Tempo:</b> {{cookingUtensil.timeGrant}}s para o preparo</ion-item>
+    <ion-list class="radio-group" radio-group [(ngModel)]="cookingUtensil.timeGrant">			
+      <ion-item class="radio-group-list">
+        <ion-label>Utensílio Intermediária</ion-label>
+        <ion-radio color="navBar" value="+0"></ion-radio>
+      </ion-item>
+      <ion-item class="radio-group-list">
+        <ion-label>Utensílio Avançado</ion-label>
+        <ion-radio color="navBar" value="-1"></ion-radio>
+      </ion-item>
+      <ion-item class="radio-group-list">
+        <ion-label>Utensílio Tradicional de Balenos</ion-label>
+        <ion-radio color="navBar" value="+5"></ion-radio>
+      </ion-item>
+      <ion-item class="radio-group-list">
+        <ion-label>Utensílio Tradicional de Serendia</ion-label>
+        <ion-radio color="navBar" value="+6"></ion-radio>
+      </ion-item>
+      <ion-item class="radio-group-list">
+        <ion-label>Utensílio Tradicional de Calpheon</ion-label>
+        <ion-radio color="navBar" value="+7"></ion-radio>
+      </ion-item>
+    </ion-list>
+  </div>
+
+
+  <ion-fab top right edge>
+    <button ion-fab mini (click)="calculate()"><ion-icon name="arrow-dropright"></ion-icon></button>
+  </ion-fab>
+  <ion-fab bottom right>
+    <button ion-fab mini><ion-icon name="more"></ion-icon></button>
+    <ion-fab-list side="left">
+      <button ion-fab (click)="showMeal()"><ion-icon name="restaurant"></ion-icon></button>
+      <button ion-fab (click)="showTime()"><ion-icon name="timer"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
+</ion-content>

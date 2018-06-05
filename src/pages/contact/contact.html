@@ -1,17 +1,19 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="navBar">
     <ion-title>
-      Contact
+      Contato
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content>
-  <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
+<ion-content padding class="page-contact">
+  <p>Inscreva-se no meu Canal, Facebook e entre no server do Discord!</p>
+  <ion-list *ngFor="let item of contacts">
     <ion-item>
-      <ion-icon name="ionic" item-start></ion-icon>
-      @ionicframework
+      <ion-avatar item-start>
+          <img class="avatar-img" [src]="item.icon">
+      </ion-avatar>
+      <a [href]="item.link"><b>{{item.name}}</b></a>
     </ion-item>
   </ion-list>
 </ion-content>

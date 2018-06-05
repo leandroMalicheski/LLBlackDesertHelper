@@ -1,0 +1,40 @@
+<!--
+  Generated template for the IngredientPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="navBar">
+    <ion-title>ingredient</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="page-ingredient">
+    <div><img class="card-img" [src]="ingredient.icon"/></div>
+    
+    <h1>{{ingredient.name}}</h1>
+    
+    <ion-list class="list-top-border">
+      <ion-item-divider color="light" class="ion-item-divider-app"><ion-icon name="calculator" class="ion-icon-padding-rigth ion-icon-defaut-color"></ion-icon>Calcular</ion-item-divider>
+      <ion-item>
+          <ion-label floating>Quatidade de Itens</ion-label>
+          <ion-input type="number" [(ngModel)]="ingredientForm.qty" name="qty" required></ion-input>
+      </ion-item>
+      <ion-item-divider color="light" class="ion-item-divider-app"><ion-icon name="list" class="ion-icon-padding-rigth ion-icon-defaut-color"></ion-icon>Item Gerado</ion-item-divider>
+      <ion-item *ngFor="let meal of mealList" (click)="mealTapped(meal)">
+        <ion-avatar item-start>
+          <img [src]="meal.icon">
+        </ion-avatar>
+        <h2>{{meal.name}}</h2>
+        <p><b>Quantidade Gerada:</b> {{meal.qtyTotal}}</p>
+      </ion-item>
+    </ion-list>
+
+    <ion-fab top right edge>
+        <button ion-fab mini (click)="calculate()"><ion-icon name="arrow-dropright"></ion-icon></button>
+    </ion-fab>
+  </ion-content>
