@@ -96,6 +96,10 @@ export class HelperPage {
   }
 
   ionViewDidEnter(){
+    this.calculateTimers();
+  }
+
+  calculateTimers(){
     let currentDate = new Date();
     let isSavingTime = currentDate.getTimezoneOffset();
     let horario = currentDate.getHours();
@@ -103,7 +107,6 @@ export class HelperPage {
                                                                             //Horario de Inverno   //Horario de Verão
     this.nextImperialReset = (isSavingTime == 180) ? this.getNextImperialReset(horario,false,21):this.getNextImperialReset(horario,true,22);
   }
-
   getNextImperialReset(time:number,isSavingTime: boolean,limite:number){
     let nextImperialReset = "01:00";
     let count = isSavingTime ? 1 : 0;

@@ -23,7 +23,7 @@
       <ion-segment-button value="ingredients">Ingredientes</ion-segment-button>
   </ion-segment>
   <ion-segment [(ngModel)]="helper" class="ion-segment">
-      <ion-segment-button value="timers">Timers</ion-segment-button>
+      <ion-segment-button value="timers" (click)="calculateTimers()">Timers</ion-segment-button>
   </ion-segment>
 
   <div [ngSwitch]="helper" class="page-padding">
