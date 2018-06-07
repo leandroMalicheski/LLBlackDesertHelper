@@ -50,7 +50,7 @@ export class ImperialItemPage {
   }
 
   mealTapped(){
-    this.navCtrl.push('MealPage', {'item':this.craftMaterial});
+    this.navCtrl.push('MealPage', {'item':this.craftMaterial,'qtyToCraft':this.imperialItemForm.qtyToCraft});
   }
 
   ionViewDidLoad() {

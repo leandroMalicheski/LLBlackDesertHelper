@@ -32,6 +32,7 @@ export class MealPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public utilsProvider:UtilsProvider, public toastCtrl: ToastController) {
     this.meal = navParams.get('item');
     this.mealForm = {"qty": 1, "timeSpentToFinish": 10};
+    let qty = navParams.get('qtyToCraft');
     
     this.hideIngredientsPage = false;
     this.hideTimePage = true;
@@ -40,6 +41,12 @@ export class MealPage {
     this.cookingClothes = {"level":0,"isOn":false,"icon":"assets/imgs/clothes/cookingClothes.png"};
     
     this.ingredientList = this.getIngredientsList(this.meal.ingredients);
+
+    if(qty){
+      this.mealForm.qty = qty;
+      this.mealForm.timeSpentToFinish = qty * 10; 
+      this.calculate();
+    }
   }
 
   calculate() {

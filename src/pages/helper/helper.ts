@@ -40,20 +40,9 @@ export class HelperPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public utilsProvider: UtilsProvider) {
     let list = JSON.parse(sessionStorage.getItem('imperialCookingList'))
-    this.imperialItemListAprendiz = utilsProvider.getAprendiz(list);
-  	this.imperialItemListProficiente = utilsProvider.getProficiente(list);
-  	this.imperialItemListProfissional = utilsProvider.getProfissional(list);
-    this.imperialItemListMestre = utilsProvider.getMestre(list);
-    this.imperialItemListArtesao = utilsProvider.getArtesao(list);
-
+    this.prepareImperialItemLists(list,utilsProvider);
     let mealList = this.filterMealList(JSON.parse(sessionStorage.getItem('mealList')));
-    this.mealListIniciante = utilsProvider.getIniciante(mealList);
-    this.mealListAprendiz = utilsProvider.getAprendiz(mealList);
-  	this.mealListProficiente = utilsProvider.getProficiente(mealList);
-  	this.mealListProfissional = utilsProvider.getProfissional(mealList);
-    this.mealListMestre = utilsProvider.getMestre(mealList);
-    this.mealListArtesao = utilsProvider.getArtesao(mealList);
-
+    this.prepareMealLists(mealList,utilsProvider);    
     this.ingredientList = this.filterIngredientsList(JSON.parse(sessionStorage.getItem('ingredients')));
   }
 
@@ -90,25 +79,34 @@ export class HelperPage {
     });
     return filteredList;
   }
- 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad HelperPage');
+
+  prepareImperialItemLists(list: ImperialItem[], utilsProvider: UtilsProvider){
+    this.imperialItemListAprendiz = utilsProvider.getAprendiz(list);
+  	this.imperialItemListProficiente = utilsProvider.getProficiente(list);
+  	this.imperialItemListProfissional = utilsProvider.getProfissional(list);
+    this.imperialItemListMestre = utilsProvider.getMestre(list);
+    this.imperialItemListArtesao = utilsProvider.getArtesao(list);
   }
 
-  ionViewDidEnter(){
-    this.calculateTimers();
+  prepareMealLists(list: Meal[], utilsProvider: UtilsProvider){
+    this.mealListIniciante = utilsProvider.getIniciante(list);
+    this.mealListAprendiz = utilsProvider.getAprendiz(list);
+  	this.mealListProficiente = utilsProvider.getProficiente(list);
+  	this.mealListProfissional = utilsProvider.getProfissional(list);
+    this.mealListMestre = utilsProvider.getMestre(list);
+    this.mealListArtesao = utilsProvider.getArtesao(list);
   }
 
   calculateTimers(){
     let currentDate = new Date();
     let isSavingTime = currentDate.getTimezoneOffset();
     let horario = currentDate.getHours();
-    this.currentDate = currentDate.getHours()+":"+currentDate.getMinutes();
-                                                                            //Horario de Inverno   //Horario de Verão
+    this.currentDate = this.addZeroToLeft(currentDate.getHours().toString())+":"+ this.addZeroToLeft(currentDate.getMinutes().toString());
     this.nextImperialReset = (isSavingTime == 180) ? this.getNextImperialReset(horario,false,21):this.getNextImperialReset(horario,true,22);
   }
+
   getNextImperialReset(time:number,isSavingTime: boolean,limite:number){
-    let nextImperialReset = "01:00";
+    let nextImperialReset = isSavingTime ? "01:00" : "00:00";
     let count = isSavingTime ? 1 : 0;
     while(count != limite){
       if(time >= count && time < count+3){
@@ -119,5 +117,17 @@ export class HelperPage {
     }
     return nextImperialReset;
   }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad HelperPage');
+  }
+
+  ionViewDidEnter(){
+    this.calculateTimers();
+  }
+
+  addZeroToLeft(time: string){
+    return (time.length == 1) ? "0"+time : time;
+   }
 
 }

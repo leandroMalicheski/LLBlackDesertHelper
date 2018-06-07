@@ -29,34 +29,50 @@
   <div [ngSwitch]="helper" class="page-padding">
       <ion-list *ngSwitchCase="'imperialCooking'">
         <ion-item-group *ngIf="imperialItemListAprendiz.length>0">
-          <ion-item-divider color="light" class="aprendiz" ><ion-icon ios="ios-arrow-forward" md="md-arrow-dropright" class="ion-icon-padding-rigth"></ion-icon>Aprendiz</ion-item-divider>
+          <ion-item-divider color="light" class="aprendiz" >
+            <ion-icon ios="ios-arrow-forward" md="md-arrow-dropright" class="ion-icon-padding-rigth"></ion-icon>Aprendiz
+          </ion-item-divider>
           <ion-item *ngFor="let item of imperialItemListAprendiz" (click)="imperialItemTapped(item)">{{item.name}}</ion-item>
         </ion-item-group>
         <ion-item-group *ngIf="imperialItemListProficiente.length>0">
-          <ion-item-divider color="light" class="proficiente"><ion-icon ios="ios-arrow-forward" md="md-arrow-dropright" class="ion-icon-padding-rigth"></ion-icon>Proficiente</ion-item-divider>
+          <ion-item-divider color="light" class="proficiente">
+            <ion-icon ios="ios-arrow-forward" md="md-arrow-dropright" class="ion-icon-padding-rigth"></ion-icon>Proficiente
+          </ion-item-divider>
           <ion-item *ngFor="let item of imperialItemListProficiente" (click)="imperialItemTapped(item)">{{item.name}}</ion-item>
         </ion-item-group>
         <ion-item-group *ngIf="imperialItemListProfissional.length>0">
-          <ion-item-divider color="light" class="profissional"><ion-icon ios="ios-arrow-forward" md="md-arrow-dropright" class="ion-icon-padding-rigth"></ion-icon>Profissional</ion-item-divider>
+          <ion-item-divider color="light" class="profissional">
+            <ion-icon ios="ios-arrow-forward" md="md-arrow-dropright" class="ion-icon-padding-rigth"></ion-icon>Profissional
+          </ion-item-divider>
           <ion-item *ngFor="let item of imperialItemListProfissional" (click)="imperialItemTapped(item)">{{item.name}}</ion-item>
         </ion-item-group>
         <ion-item-group *ngIf="imperialItemListArtesao.length>0">
-            <ion-item-divider color="light" class="artesao"><ion-icon ios="ios-arrow-forward" md="md-arrow-dropright" class="ion-icon-padding-rigth"></ion-icon>Artesão</ion-item-divider>
+            <ion-item-divider color="light" class="artesao">
+              <ion-icon ios="ios-arrow-forward" md="md-arrow-dropright" class="ion-icon-padding-rigth"></ion-icon>Artesão
+            </ion-item-divider>
             <ion-item  *ngFor="let item of imperialItemListArtesao" (click)="imperialItemTapped(item)">{{item.name}}</ion-item>
         </ion-item-group>
         <ion-item-group *ngIf="imperialItemListMestre.length>0">
-            <ion-item-divider color="light" class="mestre"><ion-icon ios="ios-arrow-forward" md="md-arrow-dropright" class="ion-icon-padding-rigth"></ion-icon>Mestre</ion-item-divider>
+            <ion-item-divider color="light" class="mestre">
+              <ion-icon ios="ios-arrow-forward" md="md-arrow-dropright" class="ion-icon-padding-rigth"></ion-icon>Mestre
+            </ion-item-divider>
             <ion-item *ngFor="let item of imperialItemListMestre" (click)="imperialItemTapped(item)">{{item.name}}</ion-item>
         </ion-item-group>
       </ion-list>
+      
       <ion-list *ngSwitchCase="'imperialAlchemy'"><h1 style="display:block;margin:auto;">Em Breve</h1></ion-list>
+  
       <ion-list *ngSwitchCase="'meal'">
         <ion-item-group *ngIf="mealListIniciante.length>0">
-          <ion-item-divider color="light" class="iniciante" ><ion-icon ios="ios-arrow-forward" md="md-arrow-dropright" class="ion-icon-padding-rigth"></ion-icon>Iniciante</ion-item-divider>
+          <ion-item-divider color="light" class="iniciante" >
+            <ion-icon ios="ios-arrow-forward" md="md-arrow-dropright" class="ion-icon-padding-rigth"></ion-icon>Iniciante
+          </ion-item-divider>
           <ion-item *ngFor="let meal of mealListIniciante" (click)="mealTapped(meal)">{{meal.name}}</ion-item>
         </ion-item-group>
         <ion-item-group *ngIf="mealListAprendiz.length>0">
-          <ion-item-divider color="light" class="aprendiz" ><ion-icon ios="ios-arrow-forward" md="md-arrow-dropright" class="ion-icon-padding-rigth"></ion-icon>Aprendiz</ion-item-divider>
+          <ion-item-divider color="light" class="aprendiz" >
+            <ion-icon ios="ios-arrow-forward" md="md-arrow-dropright" class="ion-icon-padding-rigth"></ion-icon>Aprendiz
+          </ion-item-divider>
           <ion-item *ngFor="let meal of mealListAprendiz" (click)="mealTapped(meal)">{{meal.name}}</ion-item>
         </ion-item-group>
         <ion-item-group *ngIf="mealListProficiente.length>0">
@@ -76,13 +92,22 @@
           <ion-item *ngFor="let meal of mealListMestre" (click)="mealTapped(meal)">{{meal.name}}</ion-item>
         </ion-item-group>
       </ion-list>
+      
       <ion-list *ngSwitchCase="'ingredients'">
         <ion-item *ngFor="let ingredient of ingredientList" (click)="ingredientTapped(ingredient)">{{ingredient.name}}</ion-item>
       </ion-list>
+      
       <ion-list *ngSwitchCase="'timers'">
-        <ion-item-divider color="light" style="text-align: center; font-size: 2rem"><ion-icon name="clock" style="padding: .5rem"></ion-icon>Horario Atual<ion-icon name="clock" style="padding: .5rem"></ion-icon></ion-item-divider>
-        <ion-item style="text-align: center;">{{currentDate}}</ion-item>
-        <ion-item><label><b>Próximo Reset Imperial:</b></label><ion-note item-end>{{nextImperialReset}}</ion-note></ion-item>
+        <ion-item-group>
+          <ion-item-divider color="light">
+            <ion-icon name="clock" class="ion-icon-padding-rigth" color="navBar"><b> Horario Atual</b></ion-icon>
+            <ion-note item-end color="navBar">{{currentDate}}</ion-note>
+          </ion-item-divider>
+          <ion-item><b>Reset Imperial:</b>
+            <ion-note item-end color="dark">{{nextImperialReset}}</ion-note>
+          </ion-item>
+        </ion-item-group>
+        
       </ion-list>
   </div>
 </ion-content>
