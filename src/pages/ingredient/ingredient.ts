@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams} from 'ionic-angular';
 import { Ingredient } from '../../classes/ingredients';
 import { Meal } from '../../classes/meal';
+import { UtilsProvider } from '../../providers/utils/utils';
 interface IngredientForm {qty:0};
 /**
  * Generated class for the IngredientPage page.
@@ -20,14 +21,14 @@ export class IngredientPage {
   ingredientForm: IngredientForm;
   mealList: Meal[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public utilsProvider: UtilsProvider) {
     this.ingredient = navParams.get('item');
     this.mealList = this.filterMeal(this.ingredient.foodList)
     this.ingredientForm = {"qty":0};
   }
 
   filterMeal(list){
-    let mealList = JSON.parse(sessionStorage.getItem('mealList'));
+    let mealList = JSON.parse(localStorage.getItem('mealList'));
     let filteredList = [];
     list.forEach(element => {
       let meal = mealList[element.id];
@@ -39,16 +40,10 @@ export class IngredientPage {
   }
 
   calculate(){
-    let toast = this.toastCtrl.create({
-      message: 'Valor calculado com Sucesso!!',
-      cssClass: 'toastSuccess',
-      duration: 3000,
-      position: 'top'
-    });
     this.mealList.forEach(element => {
       element.qtyTotal = this.ingredientForm.qty / element.qty;
     });
-    toast.present();
+    this.utilsProvider.showToast(UtilsProvider.SUCCESS_TOAST, "Valor calculado com Sucesso!!");
   }
 
   mealTapped(item){

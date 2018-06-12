@@ -8,6 +8,7 @@ import { UtilsProvider } from '../../providers/utils/utils';
 import { Ingredient } from '../../classes/ingredients';
 import { Boss } from '../../classes/boss';
 import { Timer } from '../../classes/timer';
+import { BossProvider } from '../../providers/boss/boss';
 
 /**
  * Generated class for the HelperPage page.
@@ -41,12 +42,13 @@ export class HelperPage {
   imperialTimer: Timer;
   currentDate: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public utilsProvider: UtilsProvider) {
-    let list = JSON.parse(sessionStorage.getItem('imperialCookingList'))
+  constructor(public navCtrl: NavController, public navParams: NavParams, public utilsProvider: UtilsProvider, public bossProvider: BossProvider) {
+    let list = JSON.parse(localStorage.getItem('imperialCookingList'))
     this.prepareImperialItemLists(list,utilsProvider);
-    let mealList = this.filterMealList(JSON.parse(sessionStorage.getItem('mealList')));
+    let mealList = this.filterMealList(JSON.parse(localStorage.getItem('mealList')));
     this.prepareMealLists(mealList,utilsProvider);    
-    this.ingredientList = this.filterIngredientsList(JSON.parse(sessionStorage.getItem('ingredients')));
+    this.ingredientList = this.filterIngredientsList(JSON.parse(localStorage.getItem('ingredients')));
+    this.bosses = JSON.parse(localStorage.getItem('bosses'));
   }
 
   mealTapped(item){
@@ -59,6 +61,10 @@ export class HelperPage {
   
   imperialItemTapped(item){
     this.navCtrl.push('ImperialItemPage', {'item':item});
+  }
+
+  bossTapped(item: Boss){
+    this.navCtrl.push('BossPage', {'item':item});
   }
 
   filterIngredientsList(list){
@@ -104,15 +110,9 @@ export class HelperPage {
     this.imperialTimer = new Timer("ImperialReset");
     let currentDate = new Date();
     this.currentDate = this.addZeroToLeft(currentDate.getHours().toString())+":"+ this.addZeroToLeft(currentDate.getMinutes().toString());
-    this.generateWorldBosses();
-  }
-
-  generateWorldBosses(){
-    this.bosses = [];
-    this.bosses.push(new Boss("Kzarka"));
-    this.bosses.push(new Boss("Kutum"));
-    this.bosses.push(new Boss("Nouver"));
-    this.bosses.push(new Boss("Karanda"));
+    this.bosses.forEach(element => {
+      this.bossProvider.getNextSpawn(element);
+    });
   }
 
   ionViewDidLoad() {

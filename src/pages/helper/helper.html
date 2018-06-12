@@ -109,7 +109,7 @@
           <ion-item-divider color="light">
               <ion-icon name="globe" class="ion-icon-padding-rigth" color="navBar"><b> World Boss</b></ion-icon>
             </ion-item-divider>
-            <ion-item *ngFor="let boss of bosses"><b>{{boss.name}}:</b>
+            <ion-item *ngFor="let boss of bosses" (click)="bossTapped(boss)"><b>{{boss.name}}:</b>
               <ion-note item-end color="dark">{{boss.nextSpawn}}</ion-note>
             </ion-item>
         </ion-item-group>

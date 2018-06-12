@@ -10,7 +10,9 @@ import { HelperPage } from '../pages/helper/helper';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { Calendar } from '@ionic-native/calendar';
 import { UtilsProvider } from '../providers/utils/utils';
+import { BossProvider } from '../providers/boss/boss';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { UtilsProvider } from '../providers/utils/utils';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    UtilsProvider
+    UtilsProvider,
+    Calendar,
+    BossProvider,
   ]
 })
 export class AppModule {}

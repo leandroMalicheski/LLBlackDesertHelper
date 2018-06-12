@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams} from 'ionic-angular';
 import { ImperialItem } from '../../classes/imperialItem';
 import { UtilsProvider } from '../../providers/utils/utils';
 
@@ -24,7 +24,7 @@ export class ImperialItemPage {
   hideResult: boolean;
   craftMaterial: MaterialToCraft;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public utilsProvider: UtilsProvider, public toastCtrl: ToastController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public utilsProvider: UtilsProvider) {
     this.imperialItem = navParams.get('item');
     this.imperialItemForm = {"result":UtilsProvider.getPriceMasked(this.imperialItem.price), "qty": 1,"qtyToCraft":this.imperialItem.qtyToCraft};
     this.craftMaterial = this.getMealToCraftById(this.imperialItem.cratfItemId);
@@ -32,21 +32,15 @@ export class ImperialItemPage {
   }
 
   private getMealToCraftById(id){
-    let mealList = JSON.parse(sessionStorage.getItem('mealList'));
+    let mealList = JSON.parse(localStorage.getItem('mealList'));
     return mealList[id];
   }
 
   calculate(){
-    let toast = this.toastCtrl.create({
-      message: 'Valor calculado com Sucesso!!',
-      cssClass: 'toastSuccess',
-      duration: 3000,
-      position: 'top'
-    });
-  	this.imperialItemForm.result = UtilsProvider.getPriceMasked(this.imperialItem.price * this.imperialItemForm.qty);
+    this.imperialItemForm.result = UtilsProvider.getPriceMasked(this.imperialItem.price * this.imperialItemForm.qty);
     this.imperialItemForm.qtyToCraft = this.imperialItem.qtyToCraft * this.imperialItemForm.qty;
     this.hideResult = false;
-    toast.present(toast);
+    this.utilsProvider.showToast(UtilsProvider.SUCCESS_TOAST, "Valor calculado com Sucesso!!");
   }
 
   mealTapped(){

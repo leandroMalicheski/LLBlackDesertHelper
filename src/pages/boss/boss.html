@@ -1,0 +1,24 @@
+<!--
+  Generated template for the BossPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar color="navBar">
+    <ion-title>Boss</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+      <img [src]="boss.img"/>
+      <ion-card-content>
+        <ion-card-title>
+          {{boss.name}}
+        </ion-card-title>
+        <ion-icon name="alarm" (click)="addEvent()"> Adicionar Evento No Calendario</ion-icon>
+      </ion-card-content>
+    </ion-card>
+  <button ion-button color="light" >Criar Evento</button>
+</ion-content>

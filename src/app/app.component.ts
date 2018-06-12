@@ -6,8 +6,9 @@ import { ImperialItem } from '../classes/imperialItem';
 import { Meal } from '../classes/meal';
 import { Ingredient } from '../classes/ingredients';
 import { UtilsProvider } from '../providers/utils/utils';
-
+import { Boss } from '../classes/boss';
 import { TabsPage } from '../pages/tabs/tabs';
+import { BossProvider } from '../providers/boss/boss';
 
 @Component({
   templateUrl: 'app.html'
@@ -15,19 +16,34 @@ import { TabsPage } from '../pages/tabs/tabs';
 export class MyApp {
   rootPage:any = TabsPage;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public bossProvider: BossProvider) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
-      this.createImperialCooking();
-      this.createMeals();
-      this.createIngredients();
-
+      if(localStorage.getItem('isFirstTime') == undefined){
+        this.createImperialCooking();
+        this.createMeals();
+        this.createIngredients();
+        this.generateWorldBosses();
+      }
     });
   }
 
+  generateWorldBosses(){
+    let bosses = [
+      new Boss("Kzarka","Santuário de Serendia","assets/imgs/worldBoss/kzarka.png"),
+      new Boss("Kutum","Câmara de Pedra Scarlate","assets/imgs/worldBoss/kutum.png"),
+      new Boss("Nouver","Santuário do Peregrino","assets/imgs/worldBoss/nouver.png"),
+      new Boss("Karanda","Cume Karanda","assets/imgs/worldBoss/karanda.png")
+    ];
+    bosses.forEach(element => {
+      this.bossProvider.getNextSpawn(element);  
+    });
+    
+    localStorage.setItem('bosses', JSON.stringify(bosses));   
+  }
   createMeals(){
     let mealList = [
       new Meal ("0","Cerveja",UtilsProvider.APRENDIZ+" 1",UtilsProvider.MEAL_IMG_PATH + "beer.png",[{"name":"Cerveja Gelada"}],[{id:"0",qty:5},{id:"1",qty:6},{id:"2",qty:1},{id:"6",qty:2}]),
@@ -58,7 +74,7 @@ export class MyApp {
       new Meal("25","Legumes em Conserva",UtilsProvider.PROFICIENTE+ " 9",UtilsProvider.MEAL_IMG_PATH + "pickledVegetables.png", [{"name":"Legumes em Conserva Doce e Azedo"}], [{id:"28",qty:8}, {id:"35",qty:4}, {id:"6",qty:2}, {id:"2",qty:2}]),
       new Meal("26","Pudim Escuro",UtilsProvider.PROFISSIONAL+ " 7",UtilsProvider.MEAL_IMG_PATH + "darkPudding.png",[{"name":"Pudim Escuro Sangrento"}], [{id:"3",qty:1},{id:"36",qty:1},{id:"7",qty:5},{id:"37",qty:7}]),
     ];
-    sessionStorage.setItem('mealList', JSON.stringify(mealList));   
+    localStorage.setItem('mealList', JSON.stringify(mealList));   
   }
 
   createIngredients(){
@@ -102,7 +118,7 @@ export class MyApp {
       new Ingredient("36","Legumes em Conserva",UtilsProvider.INGREDIENT_IMG_PATH + "pickledVegetables.png",false,undefined),
       new Ingredient("37","Sangue",UtilsProvider.INGREDIENT_IMG_PATH + "blood.png",true,[{id:"26",qty:7}]),
     ];
-    sessionStorage.setItem('ingredients', JSON.stringify(ingredients));
+    localStorage.setItem('ingredients', JSON.stringify(ingredients));
   }
   createImperialCooking(){
     let local = "Heidel, Altinova e Calpheon";
@@ -126,6 +142,6 @@ export class MyApp {
       new ImperialItem("16","Baú de Chá Mate",UtilsProvider.IMPERIAL_IMG_PATH + "suteTeaCookingBox.png",UtilsProvider.MESTRE, local,"23",60, 472500),
       new ImperialItem("17","Baú de Pudim Escuro",UtilsProvider.IMPERIAL_IMG_PATH + "darkPuddingCookingBox.png",UtilsProvider.MESTRE, local,"26",60, 472500), 
     ];
-    sessionStorage.setItem('imperialCookingList', JSON.stringify(imperialCookingList));   
+    localStorage.setItem('imperialCookingList', JSON.stringify(imperialCookingList));   
   }
 }

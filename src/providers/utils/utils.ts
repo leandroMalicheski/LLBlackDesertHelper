@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ToastController } from 'ionic-angular';
 
 /*
   Generated class for the UtilsProvider provider.
@@ -17,8 +18,10 @@ export class UtilsProvider {
  static readonly MEAL_IMG_PATH = "assets/imgs/meal/";
  static readonly IMPERIAL_IMG_PATH = "assets/imgs/imperialItem/"
  static readonly INGREDIENT_IMG_PATH = "assets/imgs/ingredient/";
+ static readonly SUCCESS_TOAST = "toastSuccess";
+ static readonly FAIL_TOAST = "toastFail";
  
- constructor() {
+ constructor(public toastCtrl: ToastController) {
    console.log('Hello UtilsProvider Provider');
  }
 
@@ -119,4 +122,15 @@ export class UtilsProvider {
  private isFloat(number){
    return number % 1 !== 0;
  }
+
+ showToast(cssClass: string, message: string){
+  let toast = this.toastCtrl.create({
+    message: message,
+    cssClass: cssClass,
+    duration: 3000,
+    position: 'top'
+  });
+
+  toast.present(toast);
+}
 }

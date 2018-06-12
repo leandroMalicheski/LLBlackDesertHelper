@@ -50,20 +50,12 @@ export class MealPage {
   }
 
   calculate() {
-    let toast = this.toastCtrl.create({
-      message: 'Valor calculado com Sucesso!!',
-      cssClass: 'toastSuccess',
-      duration: 3000,
-      position: 'top'
-    });
-    
     this.ingredientList.forEach(element => {
       element.qtyTotal = this.mealForm.qty * element.qty;
     });
     
     this.calculateTimeSpent(this.timeGrantByUtensil(),this.timeGrantByClothes(),this.mealForm.timeSpentToFinish * this.mealForm.qty);    
-
-    toast.present();
+    this.utilsProvider.showToast(UtilsProvider.SUCCESS_TOAST, "Valor calculado com Sucesso!!");
   }
 
   calculateTimeSpent(timeGrantByUtensil,timeGrantByClothes,timeSpentCooking){
@@ -97,7 +89,7 @@ export class MealPage {
   }
 
   getIngredientsList(list){
-    let ingredients = JSON.parse(sessionStorage.getItem('ingredients'));
+    let ingredients = JSON.parse(localStorage.getItem('ingredients'));
     let ingredientList = [];
     list.forEach(element => {
       let ingredient = ingredients[element.id];
