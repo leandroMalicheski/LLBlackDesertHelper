@@ -6,6 +6,8 @@ import { Meal } from '../../classes/meal';
 
 import { UtilsProvider } from '../../providers/utils/utils';
 import { Ingredient } from '../../classes/ingredients';
+import { Boss } from '../../classes/boss';
+import { Timer } from '../../classes/timer';
 
 /**
  * Generated class for the HelperPage page.
@@ -35,7 +37,8 @@ export class HelperPage {
 
   ingredientList: Ingredient[];  
 
-  nextImperialReset: string;
+  bosses: Boss[];
+  imperialTimer: Timer;
   currentDate: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public utilsProvider: UtilsProvider) {
@@ -98,24 +101,18 @@ export class HelperPage {
   }
 
   calculateTimers(){
+    this.imperialTimer = new Timer("ImperialReset");
     let currentDate = new Date();
-    let isSavingTime = currentDate.getTimezoneOffset();
-    let horario = currentDate.getHours();
     this.currentDate = this.addZeroToLeft(currentDate.getHours().toString())+":"+ this.addZeroToLeft(currentDate.getMinutes().toString());
-    this.nextImperialReset = (isSavingTime == 180) ? this.getNextImperialReset(horario,false,21):this.getNextImperialReset(horario,true,22);
+    this.generateWorldBosses();
   }
 
-  getNextImperialReset(time:number,isSavingTime: boolean,limite:number){
-    let nextImperialReset = isSavingTime ? "01:00" : "00:00";
-    let count = isSavingTime ? 1 : 0;
-    while(count != limite){
-      if(time >= count && time < count+3){
-        nextImperialReset = count+3+":00";
-        break;
-      }
-      count = count +3;
-    }
-    return nextImperialReset;
+  generateWorldBosses(){
+    this.bosses = [];
+    this.bosses.push(new Boss("Kzarka"));
+    this.bosses.push(new Boss("Kutum"));
+    this.bosses.push(new Boss("Nouver"));
+    this.bosses.push(new Boss("Karanda"));
   }
 
   ionViewDidLoad() {

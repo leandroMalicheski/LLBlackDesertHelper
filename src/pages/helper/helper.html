@@ -104,8 +104,14 @@
             <ion-note item-end color="navBar">{{currentDate}}</ion-note>
           </ion-item-divider>
           <ion-item><b>Reset Imperial:</b>
-            <ion-note item-end color="dark">{{nextImperialReset}}</ion-note>
+            <ion-note item-end color="dark">{{imperialTimer.nextReset}}</ion-note>
           </ion-item>
+          <ion-item-divider color="light">
+              <ion-icon name="globe" class="ion-icon-padding-rigth" color="navBar"><b> World Boss</b></ion-icon>
+            </ion-item-divider>
+            <ion-item *ngFor="let boss of bosses"><b>{{boss.name}}:</b>
+              <ion-note item-end color="dark">{{boss.nextSpawn}}</ion-note>
+            </ion-item>
         </ion-item-group>
         
       </ion-list>
