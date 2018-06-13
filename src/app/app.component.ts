@@ -38,9 +38,6 @@ export class MyApp {
       new Boss("Nouver","Santuário do Peregrino","assets/imgs/worldBoss/nouver.png"),
       new Boss("Karanda","Cume Karanda","assets/imgs/worldBoss/karanda.png")
     ];
-    bosses.forEach(element => {
-      this.bossProvider.getNextSpawn(element);  
-    });
     
     localStorage.setItem('bosses', JSON.stringify(bosses));   
   }

@@ -13,6 +13,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Calendar } from '@ionic-native/calendar';
 import { UtilsProvider } from '../providers/utils/utils';
 import { BossProvider } from '../providers/boss/boss';
+import { TimerProvider } from '../providers/timer/timer';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { BossProvider } from '../providers/boss/boss';
     UtilsProvider,
     Calendar,
     BossProvider,
+    TimerProvider,
   ]
 })
 export class AppModule {}

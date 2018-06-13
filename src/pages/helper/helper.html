@@ -104,7 +104,7 @@
             <ion-note item-end color="navBar">{{currentDate}}</ion-note>
           </ion-item-divider>
           <ion-item><b>Reset Imperial:</b>
-            <ion-note item-end color="dark">{{imperialTimer.nextReset}}</ion-note>
+            <ion-note item-end color="dark" (click)="timerTapped(imperialTimer)">{{imperialTimer.nextReset}}</ion-note>
           </ion-item>
           <ion-item-divider color="light">
               <ion-icon name="globe" class="ion-icon-padding-rigth" color="navBar"><b> World Boss</b></ion-icon>
@@ -113,7 +113,6 @@
               <ion-note item-end color="dark">{{boss.nextSpawn}}</ion-note>
             </ion-item>
         </ion-item-group>
-        
       </ion-list>
   </div>
 </ion-content>

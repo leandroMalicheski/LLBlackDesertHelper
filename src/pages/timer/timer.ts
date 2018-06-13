@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams} from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Timer } from '../../classes/timer';
 import { Calendar } from '@ionic-native/calendar';
-import { Boss } from '../../classes/boss';
 import { UtilsProvider } from '../../providers/utils/utils';
 
 /**
- * Generated class for the BossPage page.
+ * Generated class for the TimerPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -13,25 +13,23 @@ import { UtilsProvider } from '../../providers/utils/utils';
 
 @IonicPage()
 @Component({
-  selector: 'page-boss',
-  templateUrl: 'boss.html',
+  selector: 'page-timer',
+  templateUrl: 'timer.html',
 })
-export class BossPage {
+export class TimerPage {
+  timer: Timer;
 
-  boss : Boss;
-
-  localCalendar: Calendar;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public calendar: Calendar, public utilsProvider: UtilsProvider) {
-    this.boss = navParams.get('item');
+  constructor(public navCtrl: NavController, public navParams: NavParams, public calendar : Calendar, public utilsProvider: UtilsProvider) {
+    this.timer = navParams.get('item');
   }
 
   addEvent(){
     this.calendar.hasReadWritePermission().then(
       (retorno) => {
         if(retorno){
-          let minutes = Number(this.boss.nextSpawn.substr(this.boss.nextSpawn.indexOf(":")+1));
-          let hours = Number(this.boss.nextSpawn.substr(this.boss.nextSpawn.indexOf(":")-2,2));
-          this.createEvent(minutes,hours,this.boss.nextSpawn.charAt(0) != 'H');
+          let minutes = Number(this.timer.nextReset.substr(this.timer.nextReset.indexOf(":")+1));
+          let hours = Number(this.timer.nextReset.substr(this.timer.nextReset.indexOf(":")-2,2));
+          this.createEvent(minutes,hours,this.timer.nextReset.charAt(0) != 'H');
         } else{ 
           this.requestReadWritePermission()
         }
@@ -51,16 +49,16 @@ export class BossPage {
     endDate.setMinutes(Number(minutes+15));
     debugger;
     if(isNextDay){
-      let currentDate = startDate.getDate();
-      startDate.setDate(currentDate+1);
-      endDate.setDate(currentDate+1);
+      let diaAtual = startDate.getDate();
+      startDate.setDate(diaAtual+1);
+      endDate.setDate(diaAtual+1);
     }
     
     let calendarOptions = this.calendar.getCalendarOptions();
     calendarOptions.firstReminderMinutes = 30;
     calendarOptions.secondReminderMinutes = 15;
     
-    this.calendar.createEventWithOptions("Nascimento do " + this.boss.name, this.boss.location, "Curta a Página do LL", startDate, endDate, calendarOptions);
+    this.calendar.createEventWithOptions(this.timer.name, "Heidel", "Curta a Página do LL", startDate, endDate, calendarOptions);
     this.utilsProvider.showToast(UtilsProvider.SUCCESS_TOAST, "Evento Adicionado com Sucesso!!");
   }
 
@@ -68,9 +66,9 @@ export class BossPage {
     this.calendar.requestReadWritePermission().then(
       (retorno) => {
         if(retorno){
-          let minutes = Number(this.boss.nextSpawn.substr(this.boss.nextSpawn.indexOf(":")+1));
-          let hours = Number(this.boss.nextSpawn.substr(this.boss.nextSpawn.indexOf(":")-2,2));
-          this.createEvent(minutes,hours,this.boss.nextSpawn.charAt(0) != 'H');
+          let minutes = Number(this.timer.nextReset.substr(this.timer.nextReset.indexOf(":")+1));
+          let hours = Number(this.timer.nextReset.substr(this.timer.nextReset.indexOf(":")-2,2));
+          this.createEvent(minutes,hours,this.timer.nextReset.charAt(0) != 'H');
         }else{
           this.utilsProvider.showToast(UtilsProvider.FAIL_TOAST, "Falha ao Adicionar Evento.");
         }
@@ -79,7 +77,7 @@ export class BossPage {
   }  
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad BossPage');
+    console.log('ionViewDidLoad TimerPage');
   }
 
 }

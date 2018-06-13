@@ -67,6 +67,10 @@ export class HelperPage {
     this.navCtrl.push('BossPage', {'item':item});
   }
 
+  timerTapped(item: Timer){
+    this.navCtrl.push('TimerPage',{'item':item});
+  }
+
   filterIngredientsList(list){
     let filteredList = [];
     list.forEach(element => {
@@ -107,7 +111,8 @@ export class HelperPage {
   }
 
   calculateTimers(){
-    this.imperialTimer = new Timer("ImperialReset");
+    this.imperialTimer = new Timer("ImperialReset", "assets/imgs/npc/imperial.png");
+    
     let currentDate = new Date();
     this.currentDate = this.addZeroToLeft(currentDate.getHours().toString())+":"+ this.addZeroToLeft(currentDate.getMinutes().toString());
     this.bosses.forEach(element => {
@@ -115,9 +120,7 @@ export class HelperPage {
     });
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad HelperPage');
-  }
+  ionViewDidLoad() {}
 
   ionViewDidEnter(){
     this.calculateTimers();
