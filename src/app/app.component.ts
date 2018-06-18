@@ -21,13 +21,16 @@ export class MyApp {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
-      splashScreen.hide();
+      
       if(localStorage.getItem('isFirstTime') == undefined){
         this.createImperialCooking();
         this.createMeals();
         this.createIngredients();
         this.generateWorldBosses();
+        localStorage.setItem('isFirstTime', JSON.stringify(false)); 
       }
+      
+      splashScreen.hide();
     });
   }
 
@@ -43,33 +46,33 @@ export class MyApp {
   }
   createMeals(){
     let mealList = [
-      new Meal ("0","Cerveja",UtilsProvider.APRENDIZ+" 1",UtilsProvider.MEAL_IMG_PATH + "beer.png",[{"name":"Cerveja Gelada"}],[{id:"0",qty:5},{id:"1",qty:6},{id:"2",qty:1},{id:"6",qty:2}]),
-      new Meal ("1","Ração Orgânica",UtilsProvider.APRENDIZ+ " 6",UtilsProvider.MEAL_IMG_PATH + "organicFeed.png", undefined,[{id:"3",qty:2},{id:"4",qty:5},{id:"7",qty:4},{id:"5",qty:4}]),
-      new Meal ("2","Ovos de Pássaro Cozido", UtilsProvider.INICIANTE+ " 6", UtilsProvider.MEAL_IMG_PATH + "boiledEgg.png", [{"name":"Ovo Cozido Atraente"}],[{id:"14",qty:3},{id:"1",qty:6},{id:"12",qty:1},{id:"13",qty:1}]),
-      new Meal ("3","Aveia",UtilsProvider.APRENDIZ+ " 1",UtilsProvider.MEAL_IMG_PATH + "oatmeoal.png", [{"name":"Aveia Refinada"}],[{id:"8",qty:9},{id:"9",qty:3},{id:"10",qty:3},{id:"11",qty:2}]),
-      new Meal ("4","Peixe Frito",UtilsProvider.INICIANTE+ " 1", UtilsProvider.MEAL_IMG_PATH + "friedFish.png", [{"name":"Peixe Frito Crocante"}],[{id:"8",qty:3},{id:"5",qty:2},{id:"15",qty:2}]),
-      new Meal ("5","Salgado de File de Peixe", UtilsProvider.APRENDIZ+ " 1", UtilsProvider.MEAL_IMG_PATH + "fishFilletChips.png", [{"name":"Salgado de File de Peixe Delicioso"}],[{id:"5",qty:2},{id:"16",qty:3},{id:"8",qty:7},{id:"13",qty:2}]),
-      new Meal ("6","Ensopado de Carne",UtilsProvider.INICIANTE+ " 6", UtilsProvider.MEAL_IMG_PATH + "meatStew.png", [{"name":"Ensopado de Carne Forte"}], [{id:"4",qty:5},{id:"8",qty:2},{id:"12",qty:2},{id:"1",qty:3}]),
-      new Meal ("7","Omelete",UtilsProvider.APRENDIZ+ "1",UtilsProvider.MEAL_IMG_PATH + "omelete.png", [{"name":"Omelete Macio"}],[{id:"0",qty:5},{id:"17",qty:2},{id:"14",qty:5},{id:"13",qty:2}]),
-      new Meal ("8","Biscoito de Mel", UtilsProvider.APRENDIZ+ " 6", UtilsProvider.MEAL_IMG_PATH + "honeycombCookie.png", [{"name":"Biscoito de Mel Crocante"}],[{id:"11",qty:6},{id:"14",qty:2},{id:"9",qty:4},{id:"18",qty:2}]),
-      new Meal ("9","Chá com Aroma Fino", UtilsProvider.APRENDIZ+ " 1", UtilsProvider.MEAL_IMG_PATH + "teaWithFineScent.png", [{"name":"Chá com Aroma Fino Forte"}], [{id:"19",qty:4},{id:"20",qty:4},{id:"1",qty:7},{id:"11",qty:3}]),
-      new Meal("10","Bife",UtilsProvider.APRENDIZ+ " 1", UtilsProvider.MEAL_IMG_PATH + "steak.png", [{"name":"Bife Suculento"}], [{id:"4",qty:8},{id:"13",qty:2},{id:"21",qty:2},{id:"22",qty:2}]),
-      new Meal("11","Pudim de Frutas", UtilsProvider.INICIANTE+ " 6", UtilsProvider.MEAL_IMG_PATH + "fruitPudding.png", [{"name":"Pudim de Frutas Especial"}], [{id:"20",qty:5},{id:"23",qty:1},{id:"9",qty:3},{id:"2",qty:2}]),
-      new Meal("12","Pão Macio",UtilsProvider.INICIANTE+ " 6", UtilsProvider.MEAL_IMG_PATH + "softBread.png", [{"name":"Pão de Leite Úmido"}], [{id:"18",qty:6},{id:"6",qty:2},{id:"14",qty:2},{id:"9",qty:3}]),
-      new Meal("13","Torta de Carne",UtilsProvider.APRENDIZ+ " 1", UtilsProvider.MEAL_IMG_PATH + "meatPie.png", [{"name":"Torta de Carne Deliciosa"}], [{id:"4",qty:4},{id:"18",qty:6},{id:"3",qty:2},{id:"17",qty:2}]),
-      new Meal("14","Molho Branco",UtilsProvider.INICIANTE+ " 1", UtilsProvider.MEAL_IMG_PATH + "whiteSauce.png", undefined, [{id:"24",qty:1},{id:"9",qty:1},{id:"20",qty:1},{id:"12",qty:2}]),
-      new Meal("15","Molho Vermelho",UtilsProvider.INICIANTE+ " 1", UtilsProvider.MEAL_IMG_PATH + "redSauce.png", undefined, [{id:"24",qty:1},{id:"2",qty:2},{id:"4",qty:1},{id:"1",qty:2}]),
-      new Meal("16","Croquete de Carne",UtilsProvider.APRENDIZ+ " 6",UtilsProvider.MEAL_IMG_PATH + "meatCroquette.png", [{"name":"Croquete crocante de Carne"}], [{id:"4",qty:8},{id:"8",qty:5},{id:"14",qty:2},{id:"25",qty:2},{id:"15",qty:4}]),
-      new Meal("17","Queijo Gratin",UtilsProvider.PROFISSIONAL+ " 3",UtilsProvider.MEAL_IMG_PATH + "gratinCheese.png",[{"name":"Queijo Gratin Gostoso"}], [{id:"27",qty:1},{id:"18",qty:5},{id:"28",qty:4},{id:"25",qty:3},{id:"15",qty:3}]),
-      new Meal("18","Bolinho do Deserto",UtilsProvider.PROFICIENTE+ " 9",UtilsProvider.MEAL_IMG_PATH + "desertDumpling.png",[{"name":"Bolinho do Deserto Gostoso"}], [{id:"29",qty:6}, {id:"18",qty:6}, {id:"30",qty:1}, {id:"17",qty:2}]),
-      new Meal("19","Vinho de Mel",UtilsProvider.PROFICIENTE+ " 9",UtilsProvider.MEAL_IMG_PATH + "honeyWine.png",[{"name":"Vinho de Mel Picante"}], [{id:"11",qty:3}, {id:"31",qty:2}, {id:"2",qty:2}, {id:"1",qty:6}]),
-      new Meal("20","Essência de Liquor",UtilsProvider.PROFICIENTE+ " 1",UtilsProvider.MEAL_IMG_PATH + "liquorEssence.png", undefined, [{id:"8",qty:1}, {id:"20",qty:1}, {id:"6",qty:1}]),
-      new Meal("21","Salsicha Grelhada",UtilsProvider.PROFICIENTE+ " 5",UtilsProvider.MEAL_IMG_PATH + "grilledSausage.png",[{"name":"Linguiça Defumada"}], [{id:"4",qty:6}, {id:"10",qty:1}, {id:"26",qty:2}, {id:"13",qty:2}]),
-      new Meal("22","Macarrão de Frutos do Mar",UtilsProvider.PROFICIENTE+ " 9",UtilsProvider.MEAL_IMG_PATH + "seafoodPasta.png",[{"name":"Pasta de Marisco"}], [{id:"32",qty:4}, {id:"18",qty:5}, {id:"12",qty:3}, {id:"21",qty:3}]),
-      new Meal("23","Chá Mate",UtilsProvider.PROFISSIONAL+ " 7",UtilsProvider.MEAL_IMG_PATH + "suteTea.png",[{"name":"Chá Mate Saúdavel"}], [{id:"34",qty:2}, {id:"33",qty:2}, {id:"9",qty:3},{id:"13",qty:1}]),
-      new Meal("24","Vinagre",UtilsProvider.PROFISSIONAL+ " 1",UtilsProvider.MEAL_IMG_PATH + "vinegar.png", undefined, [{id:"0",qty:1},{id:"20",qty:1},{id:"6",qty:1},{id:"2",qty:1}]),
-      new Meal("25","Legumes em Conserva",UtilsProvider.PROFICIENTE+ " 9",UtilsProvider.MEAL_IMG_PATH + "pickledVegetables.png", [{"name":"Legumes em Conserva Doce e Azedo"}], [{id:"28",qty:8}, {id:"35",qty:4}, {id:"6",qty:2}, {id:"2",qty:2}]),
-      new Meal("26","Pudim Escuro",UtilsProvider.PROFISSIONAL+ " 7",UtilsProvider.MEAL_IMG_PATH + "darkPudding.png",[{"name":"Pudim Escuro Sangrento"}], [{id:"3",qty:1},{id:"36",qty:1},{id:"7",qty:5},{id:"37",qty:7}]),
+      new Meal ("0","Cerveja", undefined,UtilsProvider.APRENDIZ+" 1",UtilsProvider.MEAL_IMG_PATH + "beer.png",[{"name":"Cerveja Gelada"}],[{id:"0",qty:5},{id:"1",qty:6},{id:"2",qty:1},{id:"6",qty:2}],undefined),
+      new Meal ("1","Ração Orgânica",undefined,UtilsProvider.APRENDIZ+ " 6",UtilsProvider.MEAL_IMG_PATH + "organicFeed.png", undefined,[{id:"3",qty:2},{id:"4",qty:5},{id:"7",qty:4},{id:"5",qty:4}],undefined),
+      new Meal ("2","Ovos de Pássaro Cozido",[{"name":"Ataque Total +1"}], UtilsProvider.INICIANTE+ " 6", UtilsProvider.MEAL_IMG_PATH + "boiledEgg.png", [{"name":"Ovo Cozido Atraente"}],[{id:"14",qty:3},{id:"1",qty:6},{id:"12",qty:1},{id:"13",qty:1}],undefined),
+      new Meal ("3","Aveia",undefined,UtilsProvider.APRENDIZ+ " 1",UtilsProvider.MEAL_IMG_PATH + "oatmeal.png", [{"name":"Aveia Refinada"}],[{id:"8",qty:9},{id:"9",qty:3},{id:"10",qty:3},{id:"11",qty:2}],undefined),
+      new Meal ("4","Peixe Frito",[{"name":"Velocidade de Movimento +1"}],UtilsProvider.INICIANTE+ " 1", UtilsProvider.MEAL_IMG_PATH + "friedFish.png", [{"name":"Peixe Frito Crocante"}],[{id:"8",qty:3},{id:"5",qty:2},{id:"15",qty:2}],undefined),
+      new Meal ("5","Salgado de File de Peixe",undefined, UtilsProvider.APRENDIZ+ " 1", UtilsProvider.MEAL_IMG_PATH + "fishFilletChips.png", [{"name":"Salgado de File de Peixe Delicioso"}],[{id:"5",qty:2},{id:"16",qty:3},{id:"8",qty:7},{id:"13",qty:2}],undefined),
+      new Meal ("6","Ensopado de Carne",[{"name":"+30 HP Máx. por 30 min"}],UtilsProvider.INICIANTE+ " 6", UtilsProvider.MEAL_IMG_PATH + "meatStew.png", [{"name":"Ensopado de Carne Forte"}], [{id:"4",qty:5},{id:"8",qty:2},{id:"12",qty:2},{id:"1",qty:3}],undefined),
+      new Meal ("7","Omelete",[{"name":"Redução de todo dano recebido +2"}],UtilsProvider.APRENDIZ+ "1",UtilsProvider.MEAL_IMG_PATH + "omelete.png", [{"name":"Omelete Macio"}],[{id:"0",qty:5},{id:"17",qty:2},{id:"14",qty:5},{id:"13",qty:2}],undefined),
+      new Meal ("8","Biscoito de Mel",[{"name":"Limite de peso +50LT"},{"name":"Velocidade de pesca +1"}], UtilsProvider.APRENDIZ+ " 6", UtilsProvider.MEAL_IMG_PATH + "honeycombCookie.png", [{"name":"Biscoito de Mel Crocante"}],[{id:"11",qty:6},{id:"14",qty:2},{id:"9",qty:4},{id:"18",qty:2}],undefined),
+      new Meal ("9","Chá com Aroma Fino",[{"name":"MP/SP/WP Máxima +50"}], UtilsProvider.APRENDIZ+ " 1", UtilsProvider.MEAL_IMG_PATH + "teaWithFineScent.png", [{"name":"Chá com Aroma Fino Forte"}], [{id:"19",qty:4},{id:"20",qty:4},{id:"1",qty:7},{id:"11",qty:3}],undefined),
+      new Meal("10","Bife",[{"name":"+50 HP Máx"}],UtilsProvider.APRENDIZ+ " 1", UtilsProvider.MEAL_IMG_PATH + "steak.png", [{"name":"Bife Suculento"}], [{id:"4",qty:8},{id:"13",qty:2},{id:"21",qty:2},{id:"22",qty:2}],undefined),
+      new Meal("11","Pudim de Frutas",[{"name":"Recuperação de MP/WP/SP +2"}] ,UtilsProvider.INICIANTE+ " 6", UtilsProvider.MEAL_IMG_PATH + "fruitPudding.png", [{"name":"Pudim de Frutas Especial"}], [{id:"20",qty:5},{id:"23",qty:1},{id:"9",qty:3},{id:"2",qty:2}],undefined),
+      new Meal("12","Pão Macio",[{"name":"Estamina Máx. +100"}],UtilsProvider.INICIANTE+ " 6", UtilsProvider.MEAL_IMG_PATH + "softBread.png", [{"name":"Pão de Leite Úmido"}], [{id:"18",qty:6},{id:"6",qty:2},{id:"14",qty:2},{id:"9",qty:3}],undefined),
+      new Meal("13","Torta de Carne",[{"name":"Estamina Máx. +200"}],UtilsProvider.APRENDIZ+ " 1", UtilsProvider.MEAL_IMG_PATH + "meatPie.png", [{"name":"Torta de Carne Deliciosa"}], [{id:"4",qty:4},{id:"18",qty:6},{id:"3",qty:2},{id:"17",qty:2}],undefined),
+      new Meal("14","Molho Branco",undefined,UtilsProvider.INICIANTE+ " 1", UtilsProvider.MEAL_IMG_PATH + "whiteSauce.png", undefined, [{id:"24",qty:1},{id:"9",qty:1},{id:"20",qty:1},{id:"12",qty:2}],undefined),
+      new Meal("15","Molho Vermelho",undefined,UtilsProvider.INICIANTE+ " 1", UtilsProvider.MEAL_IMG_PATH + "redSauce.png", undefined, [{id:"24",qty:1},{id:"2",qty:2},{id:"4",qty:1},{id:"1",qty:2}],undefined),
+      new Meal("16","Croquete de Carne",[{"name":"Aumento de EXP de Combate +5%"}],UtilsProvider.APRENDIZ+ " 6",UtilsProvider.MEAL_IMG_PATH + "meatCroquette.png", [{"name":"Croquete crocante de Carne"}], [{id:"4",qty:8},{id:"8",qty:5},{id:"14",qty:2},{id:"25",qty:2},{id:"15",qty:4}],undefined),
+      new Meal("17","Queijo Gratin",[{"name":"HP Máx. +70"},{"name":"Velocidade de Ataque +1"}],UtilsProvider.PROFISSIONAL+ " 3",UtilsProvider.MEAL_IMG_PATH + "gratinCheese.png",[{"name":"Queijo Gratin Gostoso"}], [{id:"27",qty:1},{id:"18",qty:5},{id:"28",qty:4},{id:"25",qty:3},{id:"15",qty:3}],undefined),
+      new Meal("18","Bolinho do Deserto",[{"name":"Estamina Máxima +200 por 60 min"}],UtilsProvider.PROFICIENTE+ " 9",UtilsProvider.MEAL_IMG_PATH + "desertDumpling.png",[{"name":"Bolinho do Deserto Gostoso"}], [{id:"29",qty:6}, {id:"18",qty:6}, {id:"30",qty:1}, {id:"17",qty:2}],undefined),
+      new Meal("19","Vinho de Mel",undefined,UtilsProvider.PROFICIENTE+ " 9",UtilsProvider.MEAL_IMG_PATH + "honeyWine.png",[{"name":"Vinho de Mel Picante"}], [{id:"11",qty:3}, {id:"31",qty:2}, {id:"2",qty:2}, {id:"1",qty:6}],undefined),
+      new Meal("20","Essência de Liquor",undefined,UtilsProvider.PROFICIENTE+ " 1",UtilsProvider.MEAL_IMG_PATH + "liquorEssence.png", undefined, [{id:"8",qty:1}, {id:"20",qty:1}, {id:"6",qty:1}],undefined),
+      new Meal("21","Salsicha Grelhada",[{"name":"Ataque Total +1"}],UtilsProvider.PROFICIENTE+ " 5",UtilsProvider.MEAL_IMG_PATH + "grilledSausage.png",[{"name":"Linguiça Defumada"}], [{id:"4",qty:6}, {id:"10",qty:1}, {id:"26",qty:2}, {id:"13",qty:2}],undefined),
+      new Meal("22","Macarrão de Frutos do Mar",[{"name":"Velocidade de Conjuração +1"}],UtilsProvider.PROFICIENTE+ " 9",UtilsProvider.MEAL_IMG_PATH + "seafoodPasta.png",[{"name":"Pasta de Marisco"}], [{id:"32",qty:4}, {id:"18",qty:5}, {id:"12",qty:3}, {id:"21",qty:3}],undefined),
+      new Meal("23","Chá Mate",[{"name":"Aumento de EXP de Vida em +8%"}],UtilsProvider.PROFISSIONAL+ " 7",UtilsProvider.MEAL_IMG_PATH + "suteTea.png",[{"name":"Chá Mate Saúdavel"}], [{id:"34",qty:2}, {id:"33",qty:2}, {id:"9",qty:3},{id:"13",qty:1}],undefined),
+      new Meal("24","Vinagre",undefined,UtilsProvider.PROFISSIONAL+ " 1",UtilsProvider.MEAL_IMG_PATH + "vinegar.png", undefined, [{id:"0",qty:1},{id:"20",qty:1},{id:"6",qty:1},{id:"2",qty:1}],undefined),
+      new Meal("25","Legumes em Conserva",[{"name":"Velocidade de Coleta +1"}],UtilsProvider.PROFICIENTE+ " 9",UtilsProvider.MEAL_IMG_PATH + "pickledVegetables.png", [{"name":"Legumes em Conserva Doce e Azedo"}], [{id:"28",qty:8}, {id:"35",qty:4}, {id:"6",qty:2}, {id:"2",qty:2}],undefined),
+      new Meal("26","Pudim Escuro",[{"name":"Ataque Total +3"},{"name":"Dano Adicional contra Humanoides +2"}],UtilsProvider.PROFISSIONAL+ " 7",UtilsProvider.MEAL_IMG_PATH + "darkPudding.png",[{"name":"Pudim Escuro Sangrento"}], [{id:"3",qty:1},{id:"36",qty:1},{id:"7",qty:5},{id:"37",qty:7}],undefined),
     ];
     localStorage.setItem('mealList', JSON.stringify(mealList));   
   }
@@ -134,7 +137,7 @@ export class MyApp {
       new ImperialItem("11","Baú de Queijo Gratinado",UtilsProvider.IMPERIAL_IMG_PATH + "cheeseGratinCookingBox.png",UtilsProvider.ARTESAO, local,"17",40, 410000),
       new ImperialItem("12","Baú de Bolinho do Deserto",UtilsProvider.IMPERIAL_IMG_PATH + "desertDumplingCookingBox.png",UtilsProvider.ARTESAO, local,"18",40, 277500),
       new ImperialItem("13","Baú de Vinho de Mel",UtilsProvider.IMPERIAL_IMG_PATH + "honeyWineCookingBox.png",UtilsProvider.ARTESAO, local,"19",50, 190000),
-      new ImperialItem("14","Baú de Macarrão de Frutos do Mar",UtilsProvider.IMPERIAL_IMG_PATH + "seafoodPastaCookingBox.png",UtilsProvider.MESTRE, local,"22",40, 3250000),
+      new ImperialItem("14","Baú de Macarrão de Frutos do Mar",UtilsProvider.IMPERIAL_IMG_PATH + "seafoodPastaCookingBox.png",UtilsProvider.MESTRE, local,"22",40, 325000),
       new ImperialItem("15","Baú de Biscoito de Mel",UtilsProvider.IMPERIAL_IMG_PATH + "honeycombCookieCookingBox.png",UtilsProvider.MESTRE, local,"8",40, 362500),
       new ImperialItem("16","Baú de Chá Mate",UtilsProvider.IMPERIAL_IMG_PATH + "suteTeaCookingBox.png",UtilsProvider.MESTRE, local,"23",60, 472500),
       new ImperialItem("17","Baú de Pudim Escuro",UtilsProvider.IMPERIAL_IMG_PATH + "darkPuddingCookingBox.png",UtilsProvider.MESTRE, local,"26",60, 472500), 

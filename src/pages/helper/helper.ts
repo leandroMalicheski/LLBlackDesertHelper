@@ -41,11 +41,12 @@ export class HelperPage {
   bosses: Boss[];
   imperialTimer: Timer;
   currentDate: string;
+  alimentos: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public utilsProvider: UtilsProvider, public bossProvider: BossProvider) {
     let list = JSON.parse(localStorage.getItem('imperialCookingList'))
     this.prepareImperialItemLists(list,utilsProvider);
-    let mealList = this.filterMealList(JSON.parse(localStorage.getItem('mealList')));
+    let mealList = JSON.parse(localStorage.getItem('mealList'));
     this.prepareMealLists(mealList,utilsProvider);    
     this.ingredientList = this.filterIngredientsList(JSON.parse(localStorage.getItem('ingredients')));
     this.bosses = JSON.parse(localStorage.getItem('bosses'));
@@ -111,6 +112,7 @@ export class HelperPage {
   }
 
   calculateTimers(){
+    this.closeSubSegments();
     this.imperialTimer = new Timer("ImperialReset", "assets/imgs/npc/imperial.png");
     
     let currentDate = new Date();
@@ -118,6 +120,10 @@ export class HelperPage {
     this.bosses.forEach(element => {
       this.bossProvider.getNextSpawn(element);
     });
+  }
+
+  closeSubSegments(){
+    this.alimentos = "";
   }
 
   ionViewDidLoad() {}

@@ -47,7 +47,6 @@ export class TimerPage {
     
     endDate.setHours(Number(hours));
     endDate.setMinutes(Number(minutes+15));
-    debugger;
     if(isNextDay){
       let diaAtual = startDate.getDate();
       startDate.setDate(diaAtual+1);

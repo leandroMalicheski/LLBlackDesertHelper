@@ -29,8 +29,8 @@ export class TimerProvider {
 
   private getNextResetWinterTime(hour: number, minutes: number, weekDay: number){
     let nextReset = this.getNextReset(hour, false, 21);
-    if(nextReset == "00:00" && hour >= 0 && hour <= 23 && minutes <=59){
-      nextReset = this.getWeekDay(weekDay, nextReset);
+    if(nextReset == "00:00" && hour >= 0 && (hour <= 23 && minutes <=59)){
+      return this.getWeekDay(weekDay, nextReset);
     }else{
       return "Hoje - " + nextReset;
     }
@@ -65,13 +65,6 @@ export class TimerProvider {
       }
       count = count +3;
     }
-
-    if(nextImperialReset == "01:00"){
-
-    }else if(nextImperialReset == "00:00"){
-    
-    }
-
     return nextImperialReset;   
 }
 }

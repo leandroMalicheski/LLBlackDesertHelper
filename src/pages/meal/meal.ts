@@ -44,7 +44,6 @@ export class MealPage {
 
     if(qty){
       this.mealForm.qty = qty;
-      this.mealForm.timeSpentToFinish = qty * 10; 
       this.calculate();
     }
   }

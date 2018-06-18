@@ -9,24 +9,53 @@
   <ion-navbar color="navBar">
     <ion-title>Helper</ion-title>
   </ion-navbar>
-
+  <ion-segment [(ngModel)]="helper" class="ion-segment">
+    <ion-segment-button (ionSelect)="closeSubSegments()" value="alimentos">Alimentos</ion-segment-button>
+    <ion-segment-button (ionSelect)="closeSubSegments()" value="imperialAlchemy">Alquimia Imperial</ion-segment-button>
+  </ion-segment>
+  
+  <ion-segment [(ngModel)]="helper" class="ion-segment">
+      <ion-segment-button value="timers" (ionSelect)="calculateTimers()">Timers</ion-segment-button>
+  </ion-segment>
 </ion-header>
 
 
 <ion-content class="page-helper">
-  <ion-segment [(ngModel)]="helper" class="ion-segment">
-    <ion-segment-button value="imperialCooking">Culinária Imperial</ion-segment-button>
-    <ion-segment-button value="imperialAlchemy">Alquimia Imperial</ion-segment-button>
-  </ion-segment>
-  <ion-segment [(ngModel)]="helper" class="ion-segment">
-      <ion-segment-button value="meal">Pratos</ion-segment-button>
-      <ion-segment-button value="ingredients">Ingredientes</ion-segment-button>
-  </ion-segment>
-  <ion-segment [(ngModel)]="helper" class="ion-segment">
-      <ion-segment-button value="timers" (click)="calculateTimers()">Timers</ion-segment-button>
-  </ion-segment>
-
+  
   <div [ngSwitch]="helper" class="page-padding">
+    <ion-list *ngSwitchCase="'alimentos'">
+      <ion-segment [(ngModel)]="alimentos" class="ion-segment">
+        <ion-segment-button value="imperialCooking">Culinária Imperial</ion-segment-button>
+      </ion-segment>
+      <ion-segment [(ngModel)]="alimentos" class="ion-segment">
+          <ion-segment-button value="meal">Pratos</ion-segment-button>
+          <ion-segment-button value="ingredients">Ingredientes</ion-segment-button>
+      </ion-segment>
+      <ion-segment [(ngModel)]="alimentos" class="ion-segment">
+        <ion-segment-button value="effectsMeal">Pratos de Efeitos</ion-segment-button>
+      </ion-segment>
+    </ion-list>
+    <ion-list *ngSwitchCase="'imperialAlchemy'"><h1 style="display:block;margin:auto;">Em Breve</h1></ion-list>
+    <ion-list *ngSwitchCase="'timers'">
+      <ion-item-group>
+        <ion-item-divider color="light">
+          <ion-icon name="clock" class="ion-icon-padding-rigth" color="navBar"><b> Horario Atual</b></ion-icon>
+          <ion-note item-end color="navBar">{{currentDate}}</ion-note>
+        </ion-item-divider>
+        <ion-item><b>Reset Imperial:</b>
+          <ion-note item-end color="dark" (click)="timerTapped(imperialTimer)">{{imperialTimer.nextReset}}</ion-note>
+        </ion-item>
+        <ion-item-divider color="light">
+            <ion-icon name="globe" class="ion-icon-padding-rigth" color="navBar"><b> World Boss</b></ion-icon>
+          </ion-item-divider>
+          <ion-item *ngFor="let boss of bosses" (click)="bossTapped(boss)"><b>{{boss.name}}:</b>
+            <ion-note item-end color="dark">{{boss.nextSpawn}}</ion-note>
+          </ion-item>
+      </ion-item-group>
+    </ion-list>
+  </div>
+
+  <div [ngSwitch]="alimentos" class="page-padding">
       <ion-list *ngSwitchCase="'imperialCooking'">
         <ion-item-group *ngIf="imperialItemListAprendiz.length>0">
           <ion-item-divider color="light" class="aprendiz" >
@@ -44,7 +73,7 @@
           <ion-item-divider color="light" class="profissional">
             <ion-icon ios="ios-arrow-forward" md="md-arrow-dropright" class="ion-icon-padding-rigth"></ion-icon>Profissional
           </ion-item-divider>
-          <ion-item *ngFor="let item of imperialItemListProfissional" (click)="imperialItemTapped(item)">{{item.name}}</ion-item>
+         <ion-item *ngFor="let item of imperialItemListProfissional" (click)="imperialItemTapped(item)">{{item.name}}</ion-item>
         </ion-item-group>
         <ion-item-group *ngIf="imperialItemListArtesao.length>0">
             <ion-item-divider color="light" class="artesao">
@@ -59,9 +88,6 @@
             <ion-item *ngFor="let item of imperialItemListMestre" (click)="imperialItemTapped(item)">{{item.name}}</ion-item>
         </ion-item-group>
       </ion-list>
-      
-      <ion-list *ngSwitchCase="'imperialAlchemy'"><h1 style="display:block;margin:auto;">Em Breve</h1></ion-list>
-  
       <ion-list *ngSwitchCase="'meal'">
         <ion-item-group *ngIf="mealListIniciante.length>0">
           <ion-item-divider color="light" class="iniciante" >
@@ -92,27 +118,9 @@
           <ion-item *ngFor="let meal of mealListMestre" (click)="mealTapped(meal)">{{meal.name}}</ion-item>
         </ion-item-group>
       </ion-list>
-      
+        
       <ion-list *ngSwitchCase="'ingredients'">
         <ion-item *ngFor="let ingredient of ingredientList" (click)="ingredientTapped(ingredient)">{{ingredient.name}}</ion-item>
-      </ion-list>
-      
-      <ion-list *ngSwitchCase="'timers'">
-        <ion-item-group>
-          <ion-item-divider color="light">
-            <ion-icon name="clock" class="ion-icon-padding-rigth" color="navBar"><b> Horario Atual</b></ion-icon>
-            <ion-note item-end color="navBar">{{currentDate}}</ion-note>
-          </ion-item-divider>
-          <ion-item><b>Reset Imperial:</b>
-            <ion-note item-end color="dark" (click)="timerTapped(imperialTimer)">{{imperialTimer.nextReset}}</ion-note>
-          </ion-item>
-          <ion-item-divider color="light">
-              <ion-icon name="globe" class="ion-icon-padding-rigth" color="navBar"><b> World Boss</b></ion-icon>
-            </ion-item-divider>
-            <ion-item *ngFor="let boss of bosses" (click)="bossTapped(boss)"><b>{{boss.name}}:</b>
-              <ion-note item-end color="dark">{{boss.nextSpawn}}</ion-note>
-            </ion-item>
-        </ion-item-group>
       </ion-list>
   </div>
 </ion-content>

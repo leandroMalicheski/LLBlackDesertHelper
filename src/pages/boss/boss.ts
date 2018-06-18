@@ -49,7 +49,6 @@ export class BossPage {
     
     endDate.setHours(Number(hours));
     endDate.setMinutes(Number(minutes+15));
-    debugger;
     if(isNextDay){
       let currentDate = startDate.getDate();
       startDate.setDate(currentDate+1);
