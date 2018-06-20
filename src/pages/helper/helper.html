@@ -35,7 +35,9 @@
         <ion-segment-button value="effectsMeal">Pratos de Efeitos</ion-segment-button>
       </ion-segment>
     </ion-list>
+    
     <ion-list *ngSwitchCase="'imperialAlchemy'"><h1 style="display:block;margin:auto;">Em Breve</h1></ion-list>
+    
     <ion-list *ngSwitchCase="'timers'">
       <ion-item-group>
         <ion-item-divider color="light">
@@ -88,6 +90,7 @@
             <ion-item *ngFor="let item of imperialItemListMestre" (click)="imperialItemTapped(item)">{{item.name}}</ion-item>
         </ion-item-group>
       </ion-list>
+      
       <ion-list *ngSwitchCase="'meal'">
         <ion-item-group *ngIf="mealListIniciante.length>0">
           <ion-item-divider color="light" class="iniciante" >

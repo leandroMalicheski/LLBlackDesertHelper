@@ -116,7 +116,7 @@ export class MealPage {
   }
 
   ingredientTapped(item: Ingredient){
-    if(item.hasIngredientPage){
+    if(item.foodList){
       this.navCtrl.push('IngredientPage',{'item':item})
     }
     

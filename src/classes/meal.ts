@@ -1,8 +1,10 @@
 interface PlusCrafted {name: string};
-interface Effects {name: string};
 interface PlusCraftedList extends Array<PlusCrafted>{};
+
 interface RecipeItem {id:string, qty: number};
 interface RecipeItemList extends Array<RecipeItem>{};
+
+interface Effects {name: string};
 
 export class Meal {
     qtyTotal: number;
@@ -16,6 +18,5 @@ export class Meal {
         public icon: string, 
         public plusCrafted: PlusCraftedList, 
         public ingredients: RecipeItemList,
-        public originalFood: string
     ){}
 }

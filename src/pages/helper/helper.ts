@@ -75,7 +75,7 @@ export class HelperPage {
   filterIngredientsList(list){
     let filteredList = [];
     list.forEach(element => {
-      if(element.hasIngredientPage){
+      if(element.foodList){
         filteredList.push(element);
       }
     });

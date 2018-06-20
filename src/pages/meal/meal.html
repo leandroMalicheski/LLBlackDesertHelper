@@ -31,7 +31,11 @@
         <p><b>Quantidade Necessária:</b> {{craftMaterial.qtyTotal}}</p>
       </ion-item>
     </ion-list>
-    <ion-list *ngIf="meal.plusCrafted" class="second-list-margin">
+    <ion-list *ngIf="meal.effects" class="middle-list-margin">
+        <ion-item-divider color="light" class="ion-item-divider-app"><ion-icon name="rose" class="ion-icon-padding-rigth ion-icon-defaut-color"></ion-icon>Effeitos</ion-item-divider>
+        <ion-item *ngFor="let effect of meal.effects">{{effect.name}}</ion-item>
+    </ion-list>
+    <ion-list *ngIf="meal.plusCrafted" class="last-list-margin">
       <ion-item-divider color="light" class="ion-item-divider-app"><ion-icon name="list" class="ion-icon-padding-rigth ion-icon-defaut-color"></ion-icon>Resultado Adicional</ion-item-divider>
       <ion-item *ngFor="let meal of meal.plusCrafted">
         <h2>{{meal.name}}</h2>
