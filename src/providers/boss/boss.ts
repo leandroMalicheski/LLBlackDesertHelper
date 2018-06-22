@@ -66,9 +66,9 @@ export class BossProvider {
           else{retorno = "Qui - 16:00"}
           break;
         case 4:
-          if(hora >= 0 && hora < 16){retorno = "Hoje 16:00"} 
-          else if(hora >= 16 && hora < 20){retorno = "Hoje 20:00"} 
-          else if(hora >= 20 && (hora < 23 && minuto < 30)){retorno = "Hoje 23:30"} 
+          if(hora >= 0 && hora < 16){retorno = "Hoje - 16:00"} 
+          else if(hora >= 16 && hora < 20){retorno = "Hoje - 20:00"} 
+          else if(hora >= 20 && (hora < 23 && minuto < 30)){retorno = "Hoje - 23:30"} 
           else{retorno = "Sex - 16:00"}
           break;
         case 5:
@@ -145,9 +145,10 @@ export class BossProvider {
           else{retorno = "Sex - 16:00";}
           break;
         case 5:
-          if((hora < 16 || (hora > 23 && minuto > 30))){retorno = "16:00";}
-          else if(hora >= 16 && hora < 20){retorno = "20:00"}
-          else{retorno = "23:30";} 
+          if((hora < 16 || (hora > 23 && minuto > 30))){retorno = "Hoje - 16:00";}
+          else if(hora >= 16 && hora < 20){retorno = "Hoje - 20:00"}
+          else if(hora >= 20 && (hora <= 23 && minuto < 30)){retorno =  "Hoje - 23:30"}
+          else{retorno = "Sab - 11:00";} 
           break;
       }
       return retorno;

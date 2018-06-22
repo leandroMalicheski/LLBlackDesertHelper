@@ -32,7 +32,7 @@
           <ion-segment-button value="ingredients">Ingredientes</ion-segment-button>
       </ion-segment>
       <ion-segment [(ngModel)]="alimentos" class="ion-segment">
-        <ion-segment-button value="effectsMeal">Pratos de Efeitos</ion-segment-button>
+        <ion-segment-button value="effectsMeal">Pratos com Efeitos de LifeSkill</ion-segment-button>
       </ion-segment>
     </ion-list>
     
@@ -124,6 +124,10 @@
         
       <ion-list *ngSwitchCase="'ingredients'">
         <ion-item *ngFor="let ingredient of ingredientList" (click)="ingredientTapped(ingredient)">{{ingredient.name}}</ion-item>
+      </ion-list>
+
+      <ion-list *ngSwitchCase="'effectsMeal'">
+        <ion-item *ngFor="let meal of lifeSkillEffectList" (click)="mealTapped(meal)">{{meal.name}}</ion-item>
       </ion-list>
   </div>
 </ion-content>

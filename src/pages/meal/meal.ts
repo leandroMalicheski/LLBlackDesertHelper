@@ -116,8 +116,18 @@ export class MealPage {
   }
 
   ingredientTapped(item: Ingredient){
-    if(item.foodList){
-      this.navCtrl.push('IngredientPage',{'item':item})
+    let mealList = JSON.parse(localStorage.getItem('mealList'));
+    
+    if(item.foodId){
+      mealList.forEach(element => {
+        if(element.id === item.foodId){
+          this.navCtrl.push('MealPage', {'item':element})
+        }
+      });
+    }else{
+      if(item.foodList){
+        this.navCtrl.push('IngredientPage',{'item':item})
+      }
     }
     
   }

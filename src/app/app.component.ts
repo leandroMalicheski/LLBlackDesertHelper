@@ -18,8 +18,6 @@ export class MyApp {
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public bossProvider: BossProvider) {
     platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       
       if(localStorage.getItem('isFirstTime') == undefined){
@@ -84,10 +82,23 @@ export class MyApp {
       new Meal("34","Refeição de Balenos",[{name:"Velocidade de pesca +2"},{name:"Velocidade de Coleta +2"},{name:"Velocidade de Movimento +2"}],UtilsProvider.ARTESAO+ " 1",UtilsProvider.MEAL_IMG_PATH + "balenosMeal.png", [{name:"Refeição de Balenos Especial"}],[{id:"43",qty:1},{id:"44",qty:1},{id:"45",qty:2},{id:"47",qty:2},{id:"48",qty:1}]),
       new Meal("35","Legumes Fritos",undefined,UtilsProvider.PROFICIENTE+ " 5",UtilsProvider.MEAL_IMG_PATH + "friedVegetables.png", [{name:"Legumes Fritos Crocantes"}],[{id:"17",qty:2},{id:"13",qty:1},{id:"46",qty:2},{id:"28",qty:5}]),
       new Meal("36","Filé de Peixe Defumado",[{name:"Velocidade de Ataque +1"}],UtilsProvider.PROFICIENTE+ " 9",UtilsProvider.MEAL_IMG_PATH + "smokedFishSteak.png", [{name:"Bife de Peixe Dourado Defumado"}],[{id:"5",qty:4},{id:"17",qty:1},{id:"13",qty:2}]),
+      new Meal("37","Coquetel de Coco",[{name:"Pesca Automática -5%"}],UtilsProvider.MESTRE+ " 1",UtilsProvider.MEAL_IMG_PATH + "coconutCocktail.png", [{name:"Coquetel de Coco Gelado"}],[{id:"42",qty:1},{id:"49",qty:2},{id:"31",qty:2},{id:"1",qty:5},{id:"20",qty:1}]),
+      new Meal("38","Macarrão de Coco",[{name:"Resistência contra Insolação +10%"}],UtilsProvider.MESTRE+ " 1",UtilsProvider.MEAL_IMG_PATH + "coconutPasta.png", [{name:"Macarrão de Coco Delicioso"}],[{id:"18",qty:5},{id:"16",qty:1},{id:"10",qty:2},{id:"21",qty:4},{id:"49",qty:2}]),
+      new Meal("39","Peixe Frico com Coco",[{name:"Velocidade de Movimento +1"},{name:"Chance de Acerto Crítico +1"}],UtilsProvider.MESTRE+ " 1",UtilsProvider.MEAL_IMG_PATH + "coconutFriedFish.png", [{name:"Peixe Frico com Coco Crocante"}],[{id:"5",qty:2},{id:"49",qty:3},{id:"14",qty:2},{id:"15",qty:4},{id:"18",qty:3}]),
+      new Meal("40","Refeição Especial de Arehaza",[{name:"Resistência á Insolação +10%"},{name:"Pesca Automática -5%"},{name:"Velocidade de Movimento +2"},{name:"Chance de Acerto Crítico +1"}],UtilsProvider.MESTRE+ " 11",UtilsProvider.MEAL_IMG_PATH + "arehazaSpecial.png", undefined,[{id:"53",qty:1},{id:"50",qty:1},{id:"51",qty:1},{id:"52",qty:2},{id:"54",qty:1}]),
+      new Meal("41","Sopa de Grãos",[{name:"Velocidade de Coleta +1"}],UtilsProvider.PROFICIENTE+ " 1",UtilsProvider.MEAL_IMG_PATH + "grainSoup.png", [{name:"Sopa de Grãos Especial"}],[{id:"12",qty:3},{id:"13",qty:1},{id:"0",qty:6},{id:"1",qty:3}]),
+      new Meal("42","Molusco Cozido",[{name:"Velocidade de Coleta +2"},{name:"Tempo de Mergulho +10s"}],UtilsProvider.ARTESAO+ " 1",UtilsProvider.MEAL_IMG_PATH + "boiledShellfish.png", [{name:"Molusco Cozido Enorme"}],[{id:"21",qty:4},{id:"31",qty:3},{id:"32",qty:2},{id:"17",qty:5},{id:"46",qty:2}]),
+      new Meal("43","Torta de Figo",[{name:"Chance de Obtenção de Recurso de Coleta +3%"}],UtilsProvider.PROFISSIONAL+ " 1",UtilsProvider.MEAL_IMG_PATH + "figPie.png", [{name:"Torta de Figo Doce"}],[{id:"18",qty:3},{id:"17",qty:2},{id:"2",qty:3},{id:"55",qty:5}]),
+      new Meal("44","Pão de Teff",[{name:"Culinária/Alquimia -0.3 Segundos"}],UtilsProvider.PROFICIENTE+ " 5",UtilsProvider.MEAL_IMG_PATH + "teffBread.png", [{name:"Pão de Teff Esponjoso"}],[{id:"1",qty:3},{id:"13",qty:2},{id:"6",qty:2},{id:"56",qty:5}]),
+      new Meal("45","Sanduíche Teff",[{name:"Culinária/Alquimia -0.5 Segundos"}],UtilsProvider.MESTRE+ " 1",UtilsProvider.MEAL_IMG_PATH + "teffSandwich.png", [{name:"Sanduíche Teff Apimentado"}],[{id:"22",qty:3},{id:"57",qty:1},{id:"58",qty:1},{id:"59",qty:1}]),
+      new Meal("46","Ensopado de Cobra Freekeh",undefined,UtilsProvider.PROFISSIONAL+ " 1",UtilsProvider.MEAL_IMG_PATH + "freekehSnakeStew.png", [{name:"Ensopado de Cobra Freekeh Forte"}],[{id:"1",qty:5},{id:"62",qty:6},{id:"61",qty:2},{id:"60",qty:3}]),
+      new Meal("47","Escorpião Grelhado",[{name: "Danos dos Monstros -5%"}],UtilsProvider.ARTESAO+ " 1",UtilsProvider.MEAL_IMG_PATH + "grilledScorpion.png", [{name:"Escorpião Frito Crocante"}],[{id:"46",qty:3},{id:"33",qty:2},{id:"64",qty:3},{id:"63",qty:3}]),
+      new Meal("48","Cuscus",[{name: "Chance de Sucesso de Processamento +5%"}],UtilsProvider.ARTESAO+ " 6",UtilsProvider.MEAL_IMG_PATH + "cuscus.png", [{name:"Cuscus Clássico"}],[{id:"63",qty:3},{id:"58",qty:1},{id:"65",qty:6},{id:"47",qty:4}]),
+      new Meal("49","Arroz Frito com Pistache",[{name: "Chance de Sucesso de Processamento +3%"}],UtilsProvider.APRENDIZ+ " 6",UtilsProvider.MEAL_IMG_PATH + "pistachioFriedRice.png", [{name:"Arroz Frito com Pistache Gostoso"}],[{id:"66",qty:4},{id:"67",qty:6},{id:"30",qty:2},{id:"13",qty:2}]),
+      new Meal("50","Salada de Caçador",[{name: "Velocidade de Recarga do Mosquete +7%"}],UtilsProvider.PROFICIENTE+ " 1",UtilsProvider.MEAL_IMG_PATH + "hunterSalad.png", [{name:"Salada de Caçador Fresca"}],[{id:"39",qty:2},{id:"68",qty:1},{id:"21",qty:5},{id:"35",qty:2}]),
+      new Meal("51","Vinho Fermentado de Khalk",[{name: "Velocidade de Recarga do Mosquete +7%"},{name: "Ataque Total +7%"},{name: "Recuperação de HP +10"},{name: "Velocidade de Movimento +1"}],UtilsProvider.PROFICIENTE+ " 1",UtilsProvider.MEAL_IMG_PATH + "khalkWine.png", [{name:"Vinho Fermentado Forte de Khalk"}],[{id:"69",qty:5},{id:"2",qty:6},{id:"6",qty:6},{id:"70",qty:1},{id:"71",qty:6}]),
     ];
     localStorage.setItem('mealList', JSON.stringify(mealList));   
-
-    let lifeSkillEffectList = ["8","23","25","27","28","29","30","31","32","33","34","35","36"];
   }
 
   createIngredients(){
@@ -131,17 +142,40 @@ export class MyApp {
       new Ingredient("36","Legumes em Conserva",UtilsProvider.INGREDIENT_IMG_PATH + "pickledVegetables.png","25",undefined),
       new Ingredient("37","Sangue",UtilsProvider.INGREDIENT_IMG_PATH + "blood.png",undefined,[{id:"26",qty:7}]),
       //TODO: Adicionar Novas Imagens
-      new Ingredient("38","Pássaro Frito",UtilsProvider.INGREDIENT_IMG_PATH + "friedBird.png","28",[{id:"27",qty:1}]),
-      new Ingredient("39","Tempero",UtilsProvider.INGREDIENT_IMG_PATH + "dressing.png","30",[{id:"29",qty:2}]),
+      new Ingredient("38","Pássaro Frito",UtilsProvider.MEAL_IMG_PATH + "friedBird.png","28",[{id:"27",qty:1}]),
+      new Ingredient("39","Tempero",UtilsProvider.MEAL_IMG_PATH + "dressing.png","30",[{id:"29",qty:2}]),
       new Ingredient("40","Carne de Baleia Azul",UtilsProvider.INGREDIENT_IMG_PATH + "blueWhaleMeat.png",undefined,[{id:"29",qty:1}]),
       new Ingredient("41","Aloes",UtilsProvider.INGREDIENT_IMG_PATH + "aloes.png",undefined,[{id:"31",qty:5}]),
-      new Ingredient("42","Vinho de Ervas Exóticas",UtilsProvider.INGREDIENT_IMG_PATH + "exoticHerbalWine.png","32", [{id:"33",qty:1}]),
-      new Ingredient("43","Croquete de Carne",UtilsProvider.INGREDIENT_IMG_PATH + "meatCroquette.png","16", [{id:"34",qty:1}]),
-      new Ingredient("44","Queijo Gratin",UtilsProvider.INGREDIENT_IMG_PATH + "gratinCheese.png","17", [{id:"34",qty:1}]),
-      new Ingredient("45","Cerveja", UtilsProvider.INGREDIENT_IMG_PATH + "beer.png","0",[{id:"34",qty:2}]),
+      new Ingredient("42","Vinho de Ervas Exóticas",UtilsProvider.MEAL_IMG_PATH + "exoticHerbalWine.png","32", [{id:"33",qty:1}]),
+      new Ingredient("43","Croquete de Carne",UtilsProvider.MEAL_IMG_PATH + "meatCroquette.png","16", [{id:"34",qty:1}]),
+      new Ingredient("44","Queijo Gratin",UtilsProvider.MEAL_IMG_PATH + "gratinCheese.png","17", [{id:"34",qty:1}]),
+      new Ingredient("45","Cerveja", UtilsProvider.MEAL_IMG_PATH + "beer.png","0",[{id:"34",qty:2}]),
       new Ingredient("46","Pimenta", UtilsProvider.INGREDIENT_IMG_PATH + "pepper2.png",undefined,[{id:"34",qty:2}]),
       new Ingredient("47","Legumes Fritos",UtilsProvider.MEAL_IMG_PATH + "friedVegetables.png", "35",[{id:"34",qty:2}]),
       new Ingredient("48","Filé de Peixe Defumado",UtilsProvider.MEAL_IMG_PATH + "smokedFishSteak.png","36", [{id:"34",qty:1}]),
+      new Ingredient("49","Coco",UtilsProvider.INGREDIENT_IMG_PATH + "coconut.png",undefined, [{id:"37",qty:2}]),
+      new Ingredient("50","Macarrão de Coco",UtilsProvider.MEAL_IMG_PATH + "coconutPasta.png", "38",[{id:"40",qty:1}]),
+      new Ingredient("51","Peixe Frito com Coco",UtilsProvider.MEAL_IMG_PATH + "coconutFriedFish.png", "39",[{id:"40",qty:1}]),
+      new Ingredient("52","Coquetel de Coco",UtilsProvider.MEAL_IMG_PATH + "coconutCocktail.png", "37",[{id:"40",qty:2}]),
+      new Ingredient("53","Ensopado de Carne",UtilsProvider.MEAL_IMG_PATH + "meatStew.png", "6", [{id:"40",qty:1}]),
+      new Ingredient("54","Bife",UtilsProvider.MEAL_IMG_PATH + "steak.png", "10", [{id:"40",qty:1}]),
+      new Ingredient("55","Figo",UtilsProvider.INGREDIENT_IMG_PATH + "fig.png", undefined, [{id:"43",qty:5}]),
+      new Ingredient("56","Farinha de Teff",UtilsProvider.INGREDIENT_IMG_PATH + "teffFlour.png", undefined, [{id:"44",qty:5}]),
+      new Ingredient("57","Pão de Teff",UtilsProvider.MEAL_IMG_PATH + "teffBread.png", "44",[{id:"45",qty:1}]),
+      new Ingredient("58","Ensopado de Cobra Freekeh",UtilsProvider.MEAL_IMG_PATH + "freekehSnakeStew.png","46",[{id:"45",qty:1}]),
+      new Ingredient("59","Escorpião Grelhado",UtilsProvider.MEAL_IMG_PATH + "grilledScorpion.png","47",[{id:"45",qty:1}]),
+      new Ingredient("60","Carne de Cobra",UtilsProvider.INGREDIENT_IMG_PATH + "sneakMeat.png",undefined,[{id:"46",qty:3}]),
+      new Ingredient("61","Anise Estrelar",UtilsProvider.INGREDIENT_IMG_PATH + "starAnise.png",undefined,[{id:"46",qty:2}]),
+      new Ingredient("62","Freekeh",UtilsProvider.INGREDIENT_IMG_PATH + "freekeh.png",undefined,[{id:"46",qty:6}]),
+      new Ingredient("63","Noz Moscada",UtilsProvider.INGREDIENT_IMG_PATH + "nutmeg.png",undefined,[{id:"47",qty:3}]),
+      new Ingredient("64","Carne de Escorpião",UtilsProvider.INGREDIENT_IMG_PATH + "scorpionMeat.png",undefined,[{id:"47",qty:3}]),
+      new Ingredient("65","Massa de Teff",UtilsProvider.INGREDIENT_IMG_PATH + "teffDough.png", undefined, [{id:"48",qty:5}]),
+      new Ingredient("66","Pistache",UtilsProvider.INGREDIENT_IMG_PATH + "pistachio.png", undefined, [{id:"49",qty:4}]),
+      new Ingredient("67","Teff",UtilsProvider.INGREDIENT_IMG_PATH + "teff.png", undefined, [{id:"49",qty:6}]),
+      new Ingredient("68","Carne de Baleia Macia",UtilsProvider.INGREDIENT_IMG_PATH + "sofWhaleMeat.png", undefined, [{id:"50",qty:1}]),
+      new Ingredient("69","Vinho de Mel",UtilsProvider.MEAL_IMG_PATH + "honeyWine.png","19", [{id:"51",qty:5}]),
+      new Ingredient("70","Chifre de Fugitivo Khalk",UtilsProvider.MEAL_IMG_PATH + "khalkHorn.png",undefined, [{id:"51",qty:1}]),
+      new Ingredient("71","Tamareira",UtilsProvider.MEAL_IMG_PATH + "datePalm.png",undefined, [{id:"51",qty:6}]),
     ];
     localStorage.setItem('ingredients', JSON.stringify(ingredients));
   }

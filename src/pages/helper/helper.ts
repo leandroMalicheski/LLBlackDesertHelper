@@ -35,6 +35,7 @@ export class HelperPage {
   mealListProfissional: Meal[];
   mealListArtesao: Meal[];
   mealListMestre: Meal[];
+  lifeSkillEffectList: Meal[];
 
   ingredientList: Ingredient[];  
 
@@ -50,6 +51,7 @@ export class HelperPage {
     this.prepareMealLists(mealList,utilsProvider);    
     this.ingredientList = this.filterIngredientsList(JSON.parse(localStorage.getItem('ingredients')));
     this.bosses = JSON.parse(localStorage.getItem('bosses'));
+    this.lifeSkillEffectList = this.filterLifeSkillMealList(mealList);
   }
 
   mealTapped(item){
@@ -88,6 +90,17 @@ export class HelperPage {
     idList = ["0","3","4","5","7","9","11","14","16","18","20","22","27","29","31","32","37"];
     list.forEach(element => {
       if(idList.includes(element.id)){
+        filteredList.push(element);
+      }
+    });
+    return filteredList;
+  }
+
+  filterLifeSkillMealList(list){
+    let filteredList = [];
+    let lifeSkillsMealList = ["8","23","25","27","28","29","31","32","33","34","37","40","41","42","43","44","45","48","49","50","51"];
+    list.forEach(element => {
+      if(lifeSkillsMealList.includes(element.id)){
         filteredList.push(element);
       }
     });
