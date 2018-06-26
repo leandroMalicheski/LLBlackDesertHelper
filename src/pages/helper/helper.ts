@@ -35,7 +35,12 @@ export class HelperPage {
   mealListProfissional: Meal[];
   mealListArtesao: Meal[];
   mealListMestre: Meal[];
-  lifeSkillEffectList: Meal[];
+  
+  lSkillMealListAprendiz: Meal[];
+  lSkillMealListProficiente: Meal[];
+  lSkillMealListProfissional: Meal[];
+  lSkillMealListMestre: Meal[];
+  lSkillMealListArtesao: Meal[];
 
   ingredientList: Ingredient[];  
 
@@ -51,7 +56,7 @@ export class HelperPage {
     this.prepareMealLists(mealList,utilsProvider);    
     this.ingredientList = this.filterIngredientsList(JSON.parse(localStorage.getItem('ingredients')));
     this.bosses = JSON.parse(localStorage.getItem('bosses'));
-    this.lifeSkillEffectList = this.filterLifeSkillMealList(mealList);
+    this.prepareLifeSkillMeal(this.filterLifeSkillMealList(mealList));
   }
 
   mealTapped(item){
@@ -84,18 +89,6 @@ export class HelperPage {
     return filteredList;
   }
 
-  filterMealList(list){
-    let filteredList = [];
-    let idList: Array<string>;
-    idList = ["0","3","4","5","7","9","11","14","16","18","20","22","27","29","31","32","37"];
-    list.forEach(element => {
-      if(idList.includes(element.id)){
-        filteredList.push(element);
-      }
-    });
-    return filteredList;
-  }
-
   filterLifeSkillMealList(list){
     let filteredList = [];
     let lifeSkillsMealList = ["8","23","25","27","28","29","31","32","33","34","37","40","41","42","43","44","45","48","49","50","51"];
@@ -105,6 +98,41 @@ export class HelperPage {
       }
     });
     return filteredList;
+  }
+
+  updateTimers(){
+    this.closeSubSegments();
+    this.calculateTimers();
+  }
+
+  calculateTimers(){   
+    this.imperialTimer = new Timer("ImperialReset", "assets/imgs/npc/imperial.png");
+    
+    let currentDate = new Date();
+    this.currentDate = this.addZeroToLeft(currentDate.getHours().toString())+":"+ this.addZeroToLeft(currentDate.getMinutes().toString());
+    this.bosses.forEach(element => {
+      this.bossProvider.getNextSpawn(element);
+    });
+  }
+
+  closeSubSegments(){
+    this.alimentos = "";
+  }
+
+  ionViewDidEnter(){
+    this.calculateTimers();
+  }
+
+  addZeroToLeft(time: string){
+    return (time.length == 1) ? "0"+time : time;
+  }
+
+  prepareLifeSkillMeal(list: Meal[]){
+    this.lSkillMealListAprendiz = this.utilsProvider.getAprendiz(list);
+  	this.lSkillMealListProficiente = this.utilsProvider.getProficiente(list);
+  	this.lSkillMealListProfissional = this.utilsProvider.getProfissional(list);
+    this.lSkillMealListMestre = this.utilsProvider.getMestre(list);
+    this.lSkillMealListArtesao = this.utilsProvider.getArtesao(list);
   }
 
   prepareImperialItemLists(list: ImperialItem[], utilsProvider: UtilsProvider){
@@ -123,30 +151,5 @@ export class HelperPage {
     this.mealListMestre = utilsProvider.getMestre(list);
     this.mealListArtesao = utilsProvider.getArtesao(list);
   }
-
-  calculateTimers(){
-    this.closeSubSegments();
-    this.imperialTimer = new Timer("ImperialReset", "assets/imgs/npc/imperial.png");
-    
-    let currentDate = new Date();
-    this.currentDate = this.addZeroToLeft(currentDate.getHours().toString())+":"+ this.addZeroToLeft(currentDate.getMinutes().toString());
-    this.bosses.forEach(element => {
-      this.bossProvider.getNextSpawn(element);
-    });
-  }
-
-  closeSubSegments(){
-    this.alimentos = "";
-  }
-
-  ionViewDidLoad() {}
-
-  ionViewDidEnter(){
-    this.calculateTimers();
-  }
-
-  addZeroToLeft(time: string){
-    return (time.length == 1) ? "0"+time : time;
-   }
 
 }

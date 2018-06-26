@@ -15,7 +15,7 @@
   </ion-segment>
   
   <ion-segment [(ngModel)]="helper" class="ion-segment">
-      <ion-segment-button value="timers" (ionSelect)="calculateTimers()">Timers</ion-segment-button>
+      <ion-segment-button value="timers" (ionSelect)="updateTimers()">Timers</ion-segment-button>
   </ion-segment>
 </ion-header>
 
@@ -127,7 +127,42 @@
       </ion-list>
 
       <ion-list *ngSwitchCase="'effectsMeal'">
-        <ion-item *ngFor="let meal of lifeSkillEffectList" (click)="mealTapped(meal)">{{meal.name}}</ion-item>
+        <ion-item-group *ngIf="lSkillMealListAprendiz.length>0">
+          <ion-item-divider color="light" class="iniciante" >
+            <ion-icon ios="ios-arrow-forward" md="md-arrow-dropright" class="ion-icon-padding-rigth"></ion-icon>Iniciante
+          </ion-item-divider>
+          <ion-item *ngFor="let item of lSkillMealListAprendiz" (click)="mealTapped(item)">{{item.name}}</ion-item>
+        </ion-item-group> 
+        <ion-item-group *ngIf="lSkillMealListAprendiz.length>0">
+          <ion-item-divider color="light" class="aprendiz" >
+            <ion-icon ios="ios-arrow-forward" md="md-arrow-dropright" class="ion-icon-padding-rigth"></ion-icon>Aprendiz
+          </ion-item-divider>
+          <ion-item *ngFor="let item of lSkillMealListAprendiz" (click)="mealTapped(item)">{{item.name}}</ion-item>
+        </ion-item-group>
+        <ion-item-group *ngIf="lSkillMealListProficiente.length>0">
+          <ion-item-divider color="light" class="proficiente">
+            <ion-icon ios="ios-arrow-forward" md="md-arrow-dropright" class="ion-icon-padding-rigth"></ion-icon>Proficiente
+          </ion-item-divider>
+          <ion-item *ngFor="let item of lSkillMealListProficiente" (click)="mealTapped(item)">{{item.name}}</ion-item>
+        </ion-item-group>
+        <ion-item-group *ngIf="lSkillMealListProfissional.length>0">
+          <ion-item-divider color="light" class="profissional">
+            <ion-icon ios="ios-arrow-forward" md="md-arrow-dropright" class="ion-icon-padding-rigth"></ion-icon>Profissional
+          </ion-item-divider>
+         <ion-item *ngFor="let item of lSkillMealListProfissional" (click)="mealTapped(item)">{{item.name}}</ion-item>
+        </ion-item-group>
+        <ion-item-group *ngIf="lSkillMealListArtesao.length>0">
+         <ion-item-divider color="light" class="artesao">
+           <ion-icon ios="ios-arrow-forward" md="md-arrow-dropright" class="ion-icon-padding-rigth"></ion-icon>Artesão
+         </ion-item-divider>
+         <ion-item  *ngFor="let item of lSkillMealListArtesao" (click)="mealTapped(item)">{{item.name}}</ion-item>
+        </ion-item-group>
+        <ion-item-group *ngIf="lSkillMealListMestre.length>0">
+         <ion-item-divider color="light" class="mestre">
+           <ion-icon ios="ios-arrow-forward" md="md-arrow-dropright" class="ion-icon-padding-rigth"></ion-icon>Mestre
+         </ion-item-divider>
+         <ion-item *ngFor="let item of lSkillMealListMestre" (click)="mealTapped(item)">{{item.name}}</ion-item>
+        </ion-item-group>
       </ion-list>
   </div>
 </ion-content>

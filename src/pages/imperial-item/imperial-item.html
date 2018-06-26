@@ -16,6 +16,7 @@
       <ion-item-divider color="light" class="ion-item-divider-app"><ion-icon name="information-circle" class="ion-icon-padding-rigth ion-icon-defaut-color"></ion-icon>Dados</ion-item-divider>
       <ion-item><b>Level: </b>{{imperialItem.level}}</ion-item>
       <ion-item><b>Valor: </b>{{imperialItem.maskedPrice}}</ion-item>
+      <ion-item *ngIf="imperialItem.videoURL"><b>Video do LL: </b><a [href]="imperialItem.videoURL">Clique Aqui</a></ion-item>
       <ion-item class="card-div" [hidden]="hideResult"><b>Valor à Receber:</b> {{imperialItemForm.result}}</ion-item>
       <ion-item-divider color="light" class="ion-item-divider-app"><ion-icon name="calculator" class="ion-icon-padding-rigth ion-icon-defaut-color"></ion-icon>Calcular</ion-item-divider>
       <ion-item>

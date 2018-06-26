@@ -10,6 +10,7 @@ export class ImperialItem {
         public cratfItemId: string, 
         public qtyToCraft: number,  
         public price: number,
+        public videoURL: string,
     ){
         this.maskedPrice = UtilsProvider.getPriceMasked(price);
     }
